@@ -1,0 +1,25 @@
+\documentclass[11pt,oneside,a4paper]{article}
+\usepackage{geometry}
+\usepackage{mathtools}
+\usepackage{xfrac}
+
+\begin{document}
+\title{Advanced Classical Mechanics HW}
+\author{David Lawton}
+\date{27 September 2023}
+\maketitle
+\vfill
+\tableofcontents
+\clearpage
+
+
+\section{Question 1}
+	$ S = \int_{t_A}^{t_B} L(t) \mathrm{d}s $ is the definition of Action w.r.t. the time-dependent Lagrangian. d$x$ can be substituted by $\sqrt{\mathrm{d}x^2+\mathrm{d}y^2}$, and $L(t)$ can be substituded by $\rho g \cdot y(x)$, the expression for potential energy.
+	$$ S = \rho g \int_{x_A}^{x_A} y(x) \sqrt{\mathrm{d}x^2 + \mathrm{d}y^2} $$
+	$$ S = \rho g \int_{x_A}^{x_B} y(x) \sqrt{1 + \frac{\mathrm{d}y^2}{\mathrm{d}x^2}}\mathrm{d}x $$
+	$$ S = \rho g \int_{x_A}^{x_B} y(x) \sqrt{1+\dot y^2(x)} \mathrm{d}x $$
+	Here the differential equation of y in the integral is the Lagrangian as a function o $x$ instead of $t$.
+	$$ L = y \sqrt{1 + \dot y^2} $$
+	We then input this into the $\varepsilon -L $ equation, $ \frac{\mathrm{d}}{\mathrm{d}x}[\partial _{\dot y} L] = \partial _y L $,
+	$$ \frac{\mathrm{d}}{\mathrm{d}x} [y \dot y (1 + \dot y^2)^{\sfrac{-1}{2}}] = (1+ \dot y^2)^{\sfrac{-1}{2}} $$
+\end{document}

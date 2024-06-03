@@ -1,0 +1,364 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{fullpage}
+\usepackage{amssymb}
+\usepackage{esint}
+\title{Summary of Topics Covered in Michaelmas Term: Equations of Mathematical Physics.}
+\date{3rd Dec. 2023}
+\author{David Lawton}
+
+\begin{document}
+
+\maketitle
+\vfill
+\tableofcontents
+\newpage
+\section{Chapter 1: Diff. Equations}
+\begin{enumerate}
+\item Integrating factor.
+\begin{equation}
+\dot{y}(x) + P(x) y(x) = 0,\quad y(x)=e^{-\int P(x)\mathrm{d}x}
+\end{equation}
+\item Bernoulli Equation.
+\begin{equation}
+\dot{y} + P(x)y = Q(x)y^n \quad (\text{substitute } v=y^{1-n})
+\end{equation}
+\item Non-linear $1^{\text{st}}$ order O.D.E.'s.
+\begin{itemize}
+\item If possible seperate,
+\begin{equation}
+f(x, y)\frac{\mathrm{d}y}{\mathrm{d}x}=g(x,y)\quad\rightarrow\quad p(y)\mathrm{d}y = q(x)\mathrm{d}x
+\end{equation}
+\item Exact equations $ M + N\dot{y}=0 $
+\begin{equation}
+M = \frac{\partial f}{\partial x},\quad N = \frac{\partial f}{\partial y},\quad \mathrm{d}f=0 \rightarrow f=0
+\end{equation}
+\end{itemize}
+\item $ 2^{\text{nd}} $ order linear O.D.E.'s
+\begin{itemize}
+\item Constant coefficient ($ y = e^{\lambda x}$, solve)\\
+\begin{itemize}
+\item (hom.)
+\begin{enumerate}
+\item Real roots ($\lambda_1, \lambda_2\in \mathbb{R}$): $y_H = \mathrm{A}e^{\lambda_1 x} + \mathrm{B}e^{\lambda_2 x} $
+\item Complex roots ($\lambda_1,\lambda_2 \in \mathbb{C}$): $y_H = e^{ax}\left(\mathrm{A sin}(bx)+\mathrm{B cos}(bx)\right)$
+\item Repeated roots ($\lambda_1 = \lambda_2 = \lambda$): $ y_H = \mathrm{A}e^{\lambda x} + \mathrm{B}xe^{\lambda x}$
+\end{enumerate}
+\item (non-hom.)
+\begin{enumerate}
+\item Solve homogenous, use \textbf{ansatz} to solve for $ \tilde{y} $
+\end{enumerate}
+\end{itemize}
+\item Reduction of Order: given $ y_1(x)$, find $y_2(x)$ using 
+\begin{equation}
+y_2 = u(x)y_1
+\end{equation}
+\item Power Series: 
+\begin{equation}
+\textbf{Ansatz: } y(x) = \sum_{n=0}^{\infty}a_nx^n
+\end{equation} 
+\item Frobenius Series:
+\begin{equation}
+\textbf{Ansatz: }y(x) = x^r\sum_{m=0}^{\infty}a_mx^m
+\end{equation}
+\begin{itemize}
+\item Find and solve indicial Eq. ($ f(r) = 0$, where $f$ is quadratic)
+\item Get coefficient relation for $a_m$'s
+\item If possible, relate series to actual function (exponential, trigonometric, hyperbolic etc)
+\end{itemize}
+\end{itemize}
+\item P.D.E.'s - factorise $1^\text{st}$, $2^\text{nd}$ order P.D.E.'s
+\begin{itemize}
+\item Factorise differential operators
+\item Define $ \varepsilon, \eta$ variables to reach $\partial_{\varepsilon}\partial_{\eta}u=0$
+\end{itemize}
+\end{enumerate}	
+\newpage
+\section{Chapter 2: Vector Calculus}
+\begin{enumerate}
+\item Directional derivative:
+\begin{equation}
+D_{\hat{u}}f=\hat{u}\cdot \vec{\nabla}f, \quad \mathrm{grad} f = \vec{\nabla}f = (f_x, f_y, f_z)
+\end{equation}
+\item Vector field derivatives:
+\begin{align}
+\mathrm{div}f = \vec{\nabla}\cdot\vec{F}\quad \rightarrow\quad \text{amount of }\vec{F}\text{ leaving surface/region.}\\
+\mathrm{curl}f = \vec{\nabla}\times\vec{F}\quad\rightarrow\quad \text{circulation of }\vec{F}\text{ on surface/region.}
+\end{align}
+\item Find general expressions for $\vec{\nabla}f$, $\vec{\nabla}\cdot\vec{F}$, $\vec{\nabla}\times\vec{F}$, $\mathrm{d}\vec{r}$, $\mathrm{d}\vec{S}$, $\mathrm{d}V$ in curvilinear coordinates.
+\item 3D Levi-Civita symbol:
+\begin{equation}
+\varepsilon_{ijk} =
+		\begin{cases}
+			1 & \text{, for even permutations of } ijk \\
+			-1 & \text{, for odd permutations of } ijk \\
+			0 & \text{, for repeats in } ijk
+		\end{cases}
+\end{equation}
+\begin{equation}
+(\vec{A}\times\vec{B})_i = \sum_{j,k=1}^3\varepsilon_{ijk}A_jB_k
+\end{equation}
+\end{enumerate}
+\vfill
+\section{Chapter 3: Vector Integral Calculus}
+\begin{enumerate}
+\item Line integrals: $\oint f \mathrm{d}\vec{r}$, $\oint \vec{F}\cdot\mathrm{d}\vec{r}$, $\oint\vec{F}\times\mathrm{d}\vec{r}$
+\begin{itemize}
+\item Integration over curve
+\item Parametrise, seperate into multiple curves if needed.
+\end{itemize}
+\item Surface integrals:
+\begin{itemize}
+\item Parametric equation for S, ($\vec{r}(u, v)$)
+\item $\mathrm{d}\vec{s} = \hat{n}\mathrm{d}s = \left(\frac{\vec{r}_u\times\vec{r}_v}{|\vec{r}_u\times\vec{r}_v|}\right)(|\vec{r}_u\times\vec{r}_v|\mathrm{d}u\mathrm{d}v)=(\vec{r}_u\times\vec{r}_v)\mathrm{d}u\mathrm{d}v$
+\end{itemize}
+\item Volume Integrals:
+\begin{equation}
+\iiint_Rf(x,y,z)\mathrm{d}V
+\end{equation}
+\item Theorems:
+\begin{itemize}
+\item Green's Theorem:
+\begin{equation}
+\oint_{C=\delta A}(P\mathrm{d}x + Q\mathrm{d}y = \iint_A(\partial_xQ - \partial_yP)\mathrm{d}x\mathrm{d}y
+\end{equation}
+\item Stokes' Theorem:
+\begin{equation}
+\iint_D(\vec{\nabla}\times\vec{F})\cdot\mathrm{d}\vec{s} = \oint_{C=\delta D}\vec{F}\cdot\mathrm{d}\vec{r}
+\end{equation}
+\item Divergence Theorem:
+\begin{equation}
+\iiint_R(\vec{\nabla}\cdot\vec{F})\mathrm{d}V = \oiint_{S=\delta R}\vec{F}\cdot\mathrm{d}\vec{s}
+\end{equation}
+\end{itemize}
+\end{enumerate}
+\newpage
+\section{Chapter 4: Fourier Series}
+\begin{enumerate}
+\item\textbf{Important}: A function $f(x)$ is periodic if $f(x) = f(x+nL)$, where $L$ is the fundamental period.\\
+\item A function is even if $f(x) = f(-x)$, and odd if $f(x) = -f(-x)$. Important to remember, symmetric integral of a odd function is zero.
+\begin{equation}
+\int_{-a}^{a}f_{\text{odd}}(x)\mathrm{d}x=0
+\label{eq:oddint}
+\end{equation}
+Also important and very useful to remember the following. 
+\begin{align*}
+f_{\text{odd}}\times g_{\text{odd}} = h_{\text{even}}\\ f_{\text{odd}}\times g_{\text{even}} = h_{\text{odd}}\\ f_{\text{even}}\times g_{\text{even}} = h_{\text{even}}\\
+\end{align*}
+\item Integrals of trigonometric functions:
+\begin{equation}
+\int_{\sfrac{-L}{2}}^{\sfrac{L}{2}}\mathrm{cos}\left(\frac{2\pi m x}{L}\right)\mathrm{d}x=
+		\begin{cases}
+			L & \text{, if } m=0\\
+			0 & \text{, if } m\neq 0
+		\end{cases}
+,\quad
+\int_{\sfrac{-L}{2}}^{\sfrac{L}{2}}\mathrm{sin}\left(\frac{2\pi m x}{L}\right)\mathrm{d}x=0
+\end{equation}
+Sine function is odd, Cosine is even. Leads to
+\begin{equation}
+\int_{\sfrac{-L}{2}}^{\sfrac{L}{2}}\mathrm{sin}\left(\frac{2\pi m x}{L}\right)\mathrm{cos}\left(\frac{2\pi n x}{L}\right)\mathrm{d}x=0
+\end{equation}
+\begin{equation}
+\int_{\sfrac{-L}{2}}^{\frac{L}{2}}\mathrm{cos}\left(\frac{2\pi m x}{L}\right)\mathrm{cos}\left(\frac{2\pi n x}{L}\right)\mathrm{d}x = \int_{\sfrac{-L}{2}}^{\sfrac{L}{2}}\mathrm{sin}\left(\frac{2\pi m x}{L}\right)\mathrm{sin}\left(\frac{2\pi n x}{L}\right)\mathrm{d}x=
+		\begin{cases}
+			\sfrac{L}{2} & \text{, if } m=n\\
+			0 & \text{, if } m\neq n
+		\end{cases}
+\end{equation}
+\item \textbf{Important}: Fourier Series, any periodic function can be expanded into the form
+\begin{equation}
+f(t) = a_0 + \sum_{n=1}^{\infty}\left((a_n\mathrm{cos}\left(\frac{2 \pi n t}{T}\right)+b_n\mathrm{sin}\left(\frac{2 \pi n t}{T}\right)\right)
+\label{eq:FourierSeries}
+\end{equation}
+where the coefficients $a_0$, $a_m$, $b_m$ are defined as
+\begin{equation}
+a_0 = \frac{1}{L}\int_{\sfrac{-L}{2}}^{\sfrac{L}{2}}f(t)\mathrm{d}t
+\label{eq: a0}
+\end{equation}
+\begin{equation}
+a_m = \frac{1}{L}\int_{\sfrac{-L}{2}}^{\sfrac{L}{2}}f(t)\mathrm{cos}\left(\frac{2 \pi m t}{T}\right)\mathrm{d}t,~~~b_m = \frac{1}{L}\int_{\sfrac{-L}{2}}^{\sfrac{L}{2}}f(t)\mathrm{sin}\left(\frac{2 \pi m t}{T}\right)\mathrm{d}t
+\label{eq:coeffs}
+\end{equation}
+\item Integrating a periodic function over its period $L$ for any piece of f(x) returns the same result.
+\begin{equation}
+\int_0^Lf(x)\mathrm{d}x=\int_{\alpha}^{\alpha+L}f(x)\mathrm{d}x
+\end{equation}
+This is especially useful for piece-wise functions which not defined symmetrically around zero (eg. function defined between 0, 2$\pi$).
+\item From Eqs.~\ref{eq:oddint},~\ref{eq: a0},~\ref{eq:coeffs}, if $f(x)$ is even, $b_m = 0$, and if $f(x)$ is odd, $a_m = a_0 = 0$.
+\newpage
+\item \textbf{Important}: $\mathbb{C}$ Fourier Series.
+\begin{equation}
+\frac{1}{L}\int_{\sfrac{-L}{2}}^{\sfrac{L}{2}}\mathrm{exp}\left[\frac{2\pi i (m-n)}{L}\right]\mathrm{d}x=\delta_mn
+\end{equation}
+which leads to
+\begin{equation}
+f(x) = \sum_{n=-\infty}^{\infty}c_n\mathrm{exp}\left[\frac{2\pi nxi}{L}\right]
+\end{equation}
+\begin{equation}
+c_n = \frac{1}{L}\int_{\sfrac{-L}{2}}^{\sfrac{L}{2}}f(x)\mathrm{exp}\left[\frac{2\pi nxi}{L}\right]\mathrm{d}x
+\end{equation}
+\item Parceval's Theorem
+\begin{equation}
+\frac{1}{L}\int_{\sfrac{-L}{2}}^{\sfrac{L}{2}}|f(x)|^2\mathrm{d}x = \sum_{n=-\infty}^{\infty}|c_n|^2 = a_0^2 + \frac{1}{2}\sum_{n=1}^{\infty}(a_n^2+b_n^2)
+\end{equation}
+\end{enumerate}
+\section{Chapter 5: Fourier Transform and Dirac Delta}
+\begin{enumerate}
+\item \textbf{Important}: Fourier Transform. Fourier transform is analogous to, and derived from $\mathbb{C}$ Fourier series expansion as $L\rightarrow\infty$ (non-periodic function). It is defined as
+\begin{equation}
+\tilde{f}(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}\mathrm{d}x,\quad k=\frac{2\pi n}{L}
+\end{equation}
+although the constant preceding the integral varies based on convention, as long as a compensating change is made to the back transform, which is defined as
+\begin{equation}
+f(x)=\int_{-\infty}^{\infty}\tilde{f}(k)e^{ikx}\mathrm{d}k
+\end{equation}
+\item Properties of the F.T.:
+\begin{itemize}
+\item Suppose $f(x)$ is $\mathbb{C}$ valued.
+\begin{itemize}
+\item $f(x)$ is called Hermitian if
+\begin{equation}
+f(x)^{*}=f(-x)
+\end{equation}
+\item $f(x)$ is called Anti-Hermitian if
+\begin{equation}
+f(x)^*=-f(-x)
+\end{equation}
+\item Properties: If $f(x)$ is Hermitian, then $\mathfrak{Re}[f(x)]$ is even, $\mathfrak{Im}[f(x)]$ is odd. If $f(x)$ is Anti-Hermitian, then $\mathfrak{Re}[f(x)]$ is odd, $\mathfrak{Im}[f(x)]$ is even.
+\end{itemize}
+\item If $f(x)\in \mathbb{R}$, then $\tilde{f}(k)^*=\tilde{f}(-k)$
+\item If $f(x)$ is Hermitian, then $\tilde{f}(k)$ is real, $\tilde{f}(k)^*=\tilde{f}(k)$
+\item If $f(x)$ is Anti-Hermitian, then $\tilde{f}(k)$ is fully imaginary, $\tilde{f}^*=-\tilde{f}(k)$
+\item F.T. is linear (follows properties of integrals).
+\begin{equation}
+\mathcal{F}(\alpha f(x) + \beta g(x))= \alpha \mathcal{F}(f(x))+\beta \mathcal{F}(g(x))
+\end{equation}
+\item If $x\rightarrow x+a$, (Translation)
+\begin{equation}
+\mathcal{F}(f(x+a))=e^{ika}\mathcal{F}(f(x))
+\end{equation}
+\item If $x\rightarrow ax$,
+\begin{equation}
+\mathcal{F}(f(ax))=\frac{1}{|a|} \tilde{f}\left(\sfrac{k}{a}\right)
+\end{equation}
+\item Multiplication by $e^{\alpha x}$,
+\begin{equation}
+\mathcal{F}(e^{\alpha x}f(x))=\tilde{f}(k+ix)
+\end{equation}
+\item \textbf{Important}: Differentiation.
+\begin{equation}
+\mathcal{F}(f^{(n)}(x))=(ik)^n\tilde{f}(k)
+\label{FTdiff}
+\end{equation}
+\item $f(x)$, $\tilde{f}(k)$ symmetry. If $\tilde{f}(k)$ is the F.T. of $f(x)$, then $\frac{1}{2\pi}f(-k)$ is the F.T. of $\tilde{f}(x)$
+\end{itemize}
+\item Gaussian Integral
+\begin{equation}
+\int_{-\infty}^{\infty}e^{-ax^2}\mathrm{d}x = \sqrt{\frac{\pi}{a}}
+\label{eq:Gaussian}
+\end{equation}
+\begin{itemize}
+\item From Eq.~\ref{eq:Gaussian}, and Gaussian integration, we can show the following are true.
+\begin{equation}
+\int_{-\infty}^{\infty}e^{-ax^2+bx}\mathrm{d}x = e^{\sfrac{b^2}{4a}}\sqrt{\frac{\pi}{a}}
+\end{equation}
+\begin{equation}
+\int_{-\infty}^{\infty}xe^{-ax^2}\mathrm{d}x = 0
+\end{equation}
+\begin{equation}
+\int_{-\infty}^{\infty}x^{2k+1}e^{-ax^2}\mathrm{d}x = 0,\quad k\in\mathbb{Z}
+\end{equation}
+\begin{equation}
+\int_{-\infty}^{\infty}x^2e^{-ax^2}\mathrm{d}x =\frac{1}{2a}\sqrt{\frac{\pi}{a}}
+\end{equation}
+\begin{equation}
+\int_{0}^{\infty}xe^{-ax^2}\mathrm{d}x = \frac{1}{2a}
+\end{equation}
+\end{itemize}
+\item Dirac Delta function, $\delta(x)$. Continuous variable analogue of Kronicker Delta derived from Heaviside step function $H(x)$
+\begin{itemize}
+\item Definition of Dirac delta function.
+\begin{equation}
+\delta(x)=\frac{\mathrm{d}H}{\mathrm{d}x}=
+		\begin{cases}
+			0 & \text{, if } x > 0\\
+			\infty & \text{, if } x=0\\
+			0&\text{, if } x<0\\
+		\end{cases}
+\end{equation}
+\begin{equation}
+\therefore \quad \int_{-\infty}^{\infty}\delta(x)\mathrm{d}x=1
+\end{equation}
+\item Properties of Dirac delta function.
+\begin{equation}
+\int_{-\infty}^{\infty}f(x)\delta(x)\mathrm{d}x = f(0)
+\end{equation}
+\begin{equation}
+\int_{-\infty}^{\infty}f(x)\delta(x-c)\mathrm{d}x = f(c)
+\end{equation}
+\begin{equation}
+\int_{-\infty}^{\infty}f(x)\dot{\delta}(x)\mathrm{d}x = -\dot{f}(0)
+\end{equation}
+\begin{equation}
+\int_{-\infty}^{\infty}f(x)\delta(ax)\mathrm{d}x = \frac{1}{|a|}f(0)
+\end{equation}
+\begin{equation}
+\int_{-\infty}^{\infty}g(x)\delta(f(x))\mathrm{d}x = \sum_i\frac{g(x_i)}{|\dot{f}(x_i)|}
+\end{equation}
+\item \textbf{Important}: If the root of $\delta$ is outside the interval of integration, result is zero.
+\begin{equation}
+\int_a^b\delta(x-c)f(x)\mathrm{d}x=
+		\begin{cases}
+			f(c) & \text{, if } c\in[a,b]\\
+			0 & \text{, otherwise}\\
+		\end{cases}
+\end{equation}
+\end{itemize}
+\item F.T. with Dirac delta.
+\begin{itemize}
+\item Convolution of two real valued functions is defined as
+\begin{equation}
+f*g(x) = \int_{-\infty}^{\infty}f(y)g(x-y)\mathrm{d}y, \text{ Note: }f*g(x)=g*f(x)=h(x)
+\label{eq:convolution}
+\end{equation}
+\item F.T. of h(x) reults in
+\begin{equation}
+\tilde{h}(k)=\mathcal{F}(f*g(x))=2\pi \tilde{f}(k)\tilde{g}(x)
+\label{eq:FTconv}
+\end{equation}
+Letting $g(x) = \delta(x)$, and using Eq.~\ref{eq:convolution}
+\begin{equation}
+f*\delta(x)=f(x)
+\end{equation}
+Then using Eq.~\ref{eq:FTconv},
+\begin{equation}
+\tilde{\delta}(x)=\frac{1}{2\pi}
+\end{equation}
+\begin{equation}
+\therefore \delta(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{ikx}\mathrm{d}x
+\end{equation}
+\end{itemize}
+\item Plancheral's Theorem: supposing F.T. of $f(x)$ is well-defined.
+\begin{equation}
+\int_{-\infty}^{\infty}|f(x)|^2\mathrm{d}x = 2\pi\int_{-\infty}^{\infty}|\tilde{f}(k)|^2\mathrm{d}k
+\end{equation}
+\item Existence of F.T.: Fourier Transform of $f(x)$ exists if:
+\begin{enumerate}
+\item If $f(x)$ is absolutely integrable.
+\begin{equation}
+\int_{-\infty}^{\infty}|f(x)|\mathrm{d}x < \infty
+\end{equation}
+\item If $f(x)$ has a finite number of extrema and discontinuities.
+\end{enumerate}
+\item F.T. and O.D.E.'s: Recall Eq.~\ref{FTdiff}. Using this, F.T. changes differential equations to algebraic ones. Examples in lecture notes.
+\end{enumerate}
+\end{document}

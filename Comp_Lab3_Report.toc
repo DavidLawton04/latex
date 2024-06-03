@@ -1,0 +1,23 @@
+\contentsline {section}{\numberline {1}Abstract}{2}{section.1}%
+\contentsline {section}{\numberline {2}Introduction}{2}{section.2}%
+\contentsline {section}{\numberline {3}Methodology}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Force Evaluation and Approximation}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Velocity Evaluation and Approximation}{4}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Trajectory}{6}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Plotting}{6}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Analysis}{7}{subsubsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.4}Quadratic Approximation}{8}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Results}{9}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Result 1}{9}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Result 2}{10}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Result 3}{11}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Result 4}{13}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Conclusion}{13}{section.5}%
+\contentsline {section}{\numberline {6}Bibliography}{14}{section.6}%
+\contentsline {section}{\numberline {7}Appendix}{15}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Force Evaluation}{15}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Velocity Evaluation}{16}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Velocity Evaluation 2}{19}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Trajectory 1}{20}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Trajectory 2}{21}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Quadratic Approximation}{23}{subsection.7.6}%

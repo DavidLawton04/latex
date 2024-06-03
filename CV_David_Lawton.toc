@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {1}Personal Details:}{2}{section.1}%
+\contentsline {section}{\numberline {2}Education:}{2}{section.2}%
+\contentsline {section}{\numberline {3}Work Experience:}{2}{section.3}%
+\contentsline {section}{\numberline {4}Awards/Acknowledgements:}{2}{section.4}%
+\contentsline {section}{\numberline {5}Referees:}{2}{section.5}%

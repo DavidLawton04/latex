@@ -1,0 +1,21 @@
+    for c in tollist:
+        nsteps1tol = 0
+        while quadf(x2) != 0:
+            nsteps1tol += 1
+
+            if quadf(x2) > 0:
+                x3 = (x2)
+                x2 = 0.5 * (x1 + x3)
+
+            elif quadf(x2) < 0:
+                x1 = x2
+                x2 = 0.5 * (x1 + x3)
+
+            if np.sqrt((quadf(x2))**2) < c:
+                nsteps1list.append(nsteps1tol)
+                root1list.append(x2)
+                y1list.append(quadf(x2))
+                break
+        x1 = a
+        x3 = b
+

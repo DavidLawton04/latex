@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}Abstract}{2}{}%
+\contentsline {section}{\numberline {2}Introduction}{2}{}%
+\contentsline {section}{\numberline {3}Methodology}{4}{}%
+\contentsline {subsection}{\numberline {3.1}The Linear Pendulum}{4}{}%
+\contentsline {subsection}{\numberline {3.2}The Non-linear Pendulum}{5}{}%
+\contentsline {subsection}{\numberline {3.3}The Fourth-order Runge-Kutta Method}{5}{}%
+\contentsline {subsection}{\numberline {3.4}The Damped, Non-linear pendulum}{6}{}%
+\contentsline {subsection}{\numberline {3.5}The Damped, Driven, Non-linear Pendulum}{7}{}%
+\contentsline {section}{\numberline {4}Results}{8}{}%
+\contentsline {subsection}{\numberline {4.1}The Linear Pendulum}{8}{}%
+\contentsline {subsection}{\numberline {4.2}The Non-linear Pendulum}{9}{}%
+\contentsline {subsection}{\numberline {4.3}The Fourth-Order Runge-Kutta}{9}{}%
+\contentsline {subsection}{\numberline {4.4}The Damped Pendulum}{10}{}%
+\contentsline {subsection}{\numberline {4.5}The Driven, Damped Pendulum}{11}{}%
+\contentsline {section}{\numberline {5}Conclusion}{11}{}%
+\contentsline {section}{\numberline {6}Bibliography}{12}{}%
+\contentsline {section}{\numberline {7}Appendix}{12}{}%

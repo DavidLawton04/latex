@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{mathalpha}
+\usepackage{tikz}
+\usepackage{cite}
+
+\hypersetup{
+  colorlinks   = true,    % Colours links instead of ugly boxes
+  urlcolor     = blue,    % Colour for external hyperlinks
+  linkcolor    = blue,    % Colour of internal links
+  citecolor    = red      % Colour of citations
+}
+
+\title{Craters on the Moon}
+\author{SF Theoretical Physics Lab Report\\David Lawton\\22337087\\Lab Partner: Jack Price}
+\date{April 17th 2024}
+
+\begin{document}
+
+\maketitle
+\vfill
+\tableofcontents
+
+\newpage
+\section{Abstract}
+In this experiment, we carried out analysis on craters on the lunar surface, so that we could infer characteristics of the impacting objects that caused these craters, most of which occurred in the formation of the solar system.
+\indent Through this we were able to suppose that the depth of a crater is related to its diameter by a power law. We also showed the negligibility of relatively small craters, and thus small projectiles.
+\section{Introduction}
+The basis of this experiment is to analyse craters present on the lunar surface. These lunar craters were caused by bombardment by bodies remaining from the formation of the solar system. The majority of this activity would have occurred in the young solar system. Unlike the Earth, the moon has very little geophysical activity and as such the craters remain today, although some impacts still occur today, but they are very infrequent. The last major impact on Earth was approximately 65 million years ago.\\
+\indent From supplied images of the moon, with recorded zenith angles and scales, we will gain approximate values for diameter and depth of various craters.\\
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{/home/dj-lawton/Documents/Tikz/MoonCraters1.pdf}
+\caption{\label{fig:zenith}Illustration of the situation we are considering, where $\theta$ is the zenith angle and $D$ is the diameter of the crater.}
+\end{center}
+\end{figure}
+For all the images used, a full moon is not present, as this would give a $90^\circ$ zenith angle, and so, there is no shadow from which to measure the depth.\\
+\indent From \ref{fig:zenith}, it is evident that we can use trigonometry to solve for $l_{depth}$ given $l_{shadow}$.
+\begin{equation}
+l_{depth}= cot(\theta)l_{shadow}
+\end{equation}
+\subsection{Impact Energy}
+For the estimation of impact energies from our calculated quantities, we used the empirical formula
+\begin{equation}
+D=2.5\left(\frac{E}{\rho g_m}\right)^{0.25}
+\label{eq: kinEdiamrel}
+\end{equation}
+where $D$ is the diameter of the crater, $E$ is the kinetic energy on impact, $\rho$ is the density of moon rock, and $g_m$ is the gravitational acceleration on the lunar surface. This equation makes sense dimensionally,
+\begin{equation}
+[m]=\left(\frac{[kg ~m^2 ~s^{-2}]}{[kg~ m^{-3}]\cdot [m ~s^{-2}]}\right)^{0.25}=[m^4]^{0.25}=[m]
+\end{equation}
+and physically, as by writing it all in terms of energy, one can see that
+\begin{equation}
+\rho \cdot D^3 \approx m, g_m\cdot D \approx v^2 
+\end{equation}
+thus, one can see how the equation arises from the definition of kinetic energy.\\
+Note:\\
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline 
+$\rho$ & $2\cdot 10^3$ kg $\mathrm{m}^{-3}$ \\ 
+\hline 
+$g_m$ & 1.62 $\mathrm{m~ s}^{-1}$ \\ 
+\hline 
+\end{tabular} 
+\end{center}
+\subsection{Mass Estimates}
+\indent Next we wanted to estimate the ranges of masses of the bombarding bodies, given that the impact velocities lie in the approximate range 10-100 $\mathrm{km~s}^{-1}$. This is because bodies in the vicinity of the earth/moon move with total velocities of approximately 50 $\mathrm{km~s}^{-1}$.\\
+\indent The reason for this range of impact velocities is because the impact velocity depends on the angle between the two space velocities, those of the moon and the impacting object. When the velocities are in opposite direction, there is a relative velocity of 100 $\mathrm{km~s}^{-1}$ between the moon and the impacting object. In the opposite case, where the directions are parallel or almost so, you are unlikely to get any collision at all. therefore we set a cut off point at 10 $\mathrm{km~s}^{-1}$.\\
+\indent From this we can use this impact velocity range, as well as the calculated dimensions of each crater to calculate a range of masses of impacting  bodies, by using
+\begin{equation}
+E=\frac{1}{2}mv^2
+\label{eq: kinE}
+\end{equation}
+\section{Methodology}
+The procedure for this experiment is fairly simple, we begin by placing our images in an application which has some way in which to measure relative length. Then the number of units equating to 40 km gives the scale by which to measure lengths.\\
+\indent Next, we use Eq. \ref{eq: kinEdiamrel} to estimate the impact energies corresponding to each crater. We combine this with Eq. \ref{eq: kinE} and the ranges of impact velocities to get a range of object masses.\\
+\indent To follow this we measure the side lengths of each images, and calculate the area pictured. From this we can get a density of craters, of size $S$, per unit area, which can be used to estimate total numbers on the lunar surface. We can section these into separate intervals of diameter for easier viewing.
+\section{Results}
+Our first result regarded the sizes of crater depths with respect to corresponding crater diameters. Viewing all the data for this on one plot, in a logarithmic scale on both axes, one can clearly see a linear relationship. This indicates that the pair are related by a power law.\\
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/depthdiamMC.jpg}
+\caption{\label{fig: DepthvsDiam} Plot of crater depth vs crater diameter, illustrating the linear dependence on the logarithm scale, implying that the relation is a power law.}
+\end{center}
+\end{figure}
+\indent Our second result relates to the distribution of the diameters of the impacting bodies. We counted the numbers of impacting bodies above certain thresholds, and plotted against those thresholds.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/MassDist.jpg}
+\caption{\label{fig: NvsMinDiam}Plot of number of projectiles satisfying each minimum diameter.}
+\end{center}
+\end{figure}
+From figure \ref{fig: NvsMinDiam}, we can infer that the small craters are effectively negligible, as they number so few, relative to the large numbers of moderate and large craters.
+\section{Conclusion}
+In conclusion, we explained and derived some of the theory surrounding this, we showed that the relation between crater diameter and crater depth is governed by a power law, and we showed that small craters can be ignored, as they number much fewer and cause far less impact than the larger ones. We also estimated ranges for masses of these asteroids bombarding the moon.
+\section{References}
+\begin{enumerate}
+\item SF Craters of the Moon. Trinity College Dublin, School of Physics
+\end{enumerate}
+\end{document}

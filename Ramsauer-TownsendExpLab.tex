@@ -1,0 +1,266 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{mathalpha}
+\usepackage{tikz}
+\usepackage{cite}
+
+\hypersetup{
+  colorlinks   = true,    % Colours links instead of ugly boxes
+  urlcolor     = blue,    % Colour for external hyperlinks
+  linkcolor    = blue,    % Colour of internal links
+  citecolor    = red      % Colour of citations
+}
+
+\title{The Ramsauer-Townsend Effect}
+\author{SF Theoretical Physics Lab Report\\David Lawton\\22337087\\Lab Partner: Jack Price}
+\date{April 8th 2024}
+
+\begin{document}
+
+\maketitle
+\vfill
+\tableofcontents
+
+\newpage
+\section{Abstract}
+In this experiment, we aimed to verify the Ramsauer-Townsend effect for electrons flowing through xenon gas by showing that the scattering cross section of the electrons from the xenon atoms has a dependence on the energy of the electron and a minimum in that dependence.\\
+\indent We succeeded in our aims, while establishing the theory and showing how to calculate important quantities related to the experiment such as mean free path, contact potential and mean energy of thermionic emission.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/P_svsVRTEff.jpg}
+\caption{Verification of the dependence of scattering cross section with energy.}
+\end{center}
+\end{figure}
+\section{Introduction}
+The Ramsauer-Townsend effect is a quantum mechanical effect, which owes itself to the wave-like properties of electrons. It concerns low-energy electrons flowing through noble gases, and in this experiment, our procedure involved low pressure xenon gas inside a thyratron.
+\subsection{Classical Scattering}
+In the classical interpretation of scattering, the differential cross section does not depend on the kinetic energy of the incident particle. This means that the distribution of many scattered particles is irrelevant of their initial kinetic energy. Applying this to our experiment, the classical prediction would be that both the current caused by the scattered particles and the current caused by unscattered particles would increase linearly with kinetic energy (voltage).
+\subsection{Ramsauer-Townsend Effect}
+As the Ramsauer-Townsend effect is a quantum mechanical effect, it is governed by the laws of quantum mechanics, and the electron is treated as a wave-packet, and not a classical particle. As such the electron moving through space can be simplified to a wavefunction moving along a line. A wavefunction is a function governing the probability amplitude of the position of the electron. In quantum mechanics, the scattering of an electron by a noble gas can similarly be simplified to the scattering of this wavefunction by a potential well of with $2R$ where R is the radius of the atom from which the electron is scattered.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{/home/dj-lawton/Pictures/Screenshots/Screenshot from 2024-04-10 19-26-34.png}
+\caption{\label{fig: QMRTEff}Illustration of the explained one-dimensional  scattering example.}
+\end{center}
+\end{figure}
+The important result of this 1D scattering is that the scattering goes to zero for electron wavelengths equal to multiples of  twice the width of the potential well.\\
+\indent We can relate this to a  macroscopic physical consequences by recognising some basic quantum mechanical relations.
+\begin{equation}
+E=\hbar\omega,~p=\hbar k
+\end{equation} 
+where $\omega$ is the angular frequency and $k$ is the wavenumber of the matter wave of a particle with momentum $p$ and energy $E$, and $\hbar$ is Planck's constant divided by $2\pi$.
+\subsection{Circuit}
+In the experiment we used the macroscopic properties of `scattered current' and `unscattered current'. These are two currents induced by thermionic emission a thyratron, which is a chamber, as shown in figure \ref{fig: thyratron}, filled with xenon gas.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{/home/dj-lawton/Pictures/Screenshots/Screenshot from 2024-04-15 20-01-45.png}
+\caption{\label{fig: thyratron}Illustration of the interior of the thyratron used.}
+\end{center}
+\end{figure}
+In figure \ref{fig: thyratron}, $I_s$ is the scattered current, and $I_p$ is the unscattered current. There exists a function $f(V)$ such that in the absence of xenon,
+\begin{equation}
+f(V) = \frac{I^*_s}{I^*_p}
+\end{equation}
+where the $^*$ denotes the absence of xenon. This function accounts for the solid angle subtending the plate (the angle through which the electrons must go to hit the plate), and the effect of space charge, which is the effective negatively charged continuum of electrons emitted from the thyratron, which interact with each other altering the angular distribution of emitted electrons.\\
+\indent This function $f(V)$ then holds for unscattered electrons in the presence of xenon. In this case we must account for the probability of an electron being scattered. This leads to
+\begin{equation}
+I_p = f(V)\cdot I_s \cdot (1-P_s)
+\end{equation}
+which when substituting the definition of $f$ and manipulating algebraically gives
+\begin{equation}
+P_s= 1 - \frac{I_p\cdot I^*_s}{I_s\cdot I^*_p}
+\label{eq: prob}
+\end{equation}
+\subsection{Scattering Theory}
+\indent Following this we derive the mean free path of the electron in xenon, starting from the number of molecules $N$.
+\begin{equation}
+\mathrm{d}N = \mathrm{d}V\frac{\mathrm{d}N}{\mathrm{d}V}
+\end{equation}
+we treat the scattering cross section of an electron from a xenon atom $\sigma$, and the density of xenon $n$ in the medium as 
+\begin{equation}
+\sigma = \frac{1}{v_e}\frac{\mathrm{d}V}{\mathrm{d}t},~n=\frac{\mathrm{d}N}{\mathrm{d}V}
+\label{eq: sigma, n}
+\end{equation}
+This is because the infinitesimal volume element $\mathrm{d}V$ can be approximated as the scattering cross section of an electron from each xenon atom times the infinitesimal length element $\mathrm{d}x=\frac{\mathrm{d}x}{\mathrm{d}t}\mathrm{d}t$.
+Eq. \ref{eq: sigma, n} then leads to
+\begin{equation}
+\frac{\mathrm{d}N}{\mathrm{d}t}= \sigma v_en
+\end{equation}
+where $\frac{\mathrm{d}N}{\mathrm{d}t}$ is the number of times each electron is scattered by xenon atoms per unit time. This then leads to the \textit{mean free time}, which is the amount of time between each scattering event for each electron.
+\begin{equation}
+t_{\text{mean}}=\frac{\mathrm{d}t}{\mathrm{d}N}=\frac{1}{\sigma v_en}
+\label{eq: mft}
+\end{equation}
+from the mean free time we can multiply by the velocity of the electron to find the \textit{mean free path}. Mean free path is the average distance between each collision.
+\begin{equation}
+\lambda = v_e\cdot t_{\text{mean}}
+\label{eq: mfp}
+\end{equation}
+Combining Eqs.~\ref{eq: mft}, \ref{eq: mfp}, returns an expression for the mean free path of the electrons in xenon gas.\\
+\begin{equation}
+\lambda = \frac{1}{\sigma n}
+\end{equation}
+This implies that the mean free path of electrons in xenon gas is inversely proportional to the scattering cross section of the electron from a xenon atom, and the density of the xenon in the medium.\\
+\subsection{Probability of Collision}
+\indent Next we will derive the probability $P$ that an electron travelling through the field free medium of length $l$, with mean free path $\lambda$, undergoes at least one collision The process of collisions is a counting process with a constant expected rate $\lambda^{-1}$, we can use a Poisson distribution to find the probality of an electron undergoing $k$ collisions. We can do this because the process can be separated into infinitely many infinitesimal intervals governed by Binomial distributions. To begin we split our interval $(0,l]$ into N sections, governed by a Binomial distribution. Each of these intervals is akin to a trial, therefore the probability of $k$ collisions is\\
+\begin{equation}
+p(k, N) \equiv \frac{N!}{k!(N-k)!}\left(\frac{l}{N\lambda}\right)^k\left(1-\frac{l}{N\lambda}\right)^{N-k}
+\end{equation}
+This binomial distribution is generated by the Binomial function 
+\begin{equation}
+P(s, N) =\sum_{k=0}^{\infty}p(k,N)\cdot s^k = \left(1-\left(\frac{l}{N\lambda}\right) + \left(\frac{l}{N\lambda}\right)s\right)^N
+\end{equation}
+We then let the length of the interval become infinitesimal, ie. let $N \rightarrow \infty$. $P(s, N)$ reduces to the generating function of a Poisson distribution.
+\begin{equation}
+\lim_{N\rightarrow\infty} P(s,N) = e^{-\frac{l}{\lambda}(1-s)}=\sum_{k=0}^{\infty}e^{-\frac{l}{\lambda}}\left(\frac{l}{\lambda}\right)^k\frac{s^k}{k!}
+\end{equation}
+Therefore the probability of $k$ collisions is governed by a Poisson distribution.
+\begin{equation}
+p_{tot}(k)\equiv e^{-\frac{l}{\lambda}}\left(\frac{l}{\lambda}\right)^k\frac{1}{k!}
+\end{equation}
+and the probability of more than one collision is
+\begin{equation}
+p_{tot}(k>0)=1-e^{-\frac{l}{\lambda}}=1-e^{-l\sigma n}
+\label{eq: prob2}
+\end{equation}
+substituting into Eq. \ref{eq: prob}, we get
+\begin{equation}
+\frac{I_p\cdot I^*_s}{I_s\cdot I^*_p} = e^{-l\sigma n}
+\end{equation}
+the length of the medium $l$ in this experiment is the distance between the first aperture and the plate electrode.\\
+\subsection{Thermionic Emission Energy Distribution}
+During the experiment the current is caused by thermionic emission, the electrons emitted have various kinetic energies, whose distribution is Maxwellian. For a rate of electron emission $\dot{N}_0$, $\dot{N}(\varepsilon)$, the rate at a specific energy $\varepsilon$ is
+\begin{equation}
+\dot{N}(\varepsilon)=\dot{N}_0e^{\sfrac{-\varepsilon}{k_BT}}=\dot{N}_0e^{\sfrac{-3\varepsilon}{2\bar{\varepsilon}}}
+\end{equation}
+where $\bar{\varepsilon}=(\sfrac{3}{2})k_BT$ is the mean energy of the distribution, $k_B$ is the Boltzmann constant, and $T$ is the temperature of the surface.\\
+\indent From this, one can write the current exiting the cathode as
+\begin{equation}
+I_0=e\int_0^{\infty}\dot{N}(\varepsilon)\mathrm{d}\varepsilon = e\dot{N}_0(\sfrac{-2\bar{\varepsilon}}{3})\left[e^{\sfrac{-3\varepsilon}{2\bar{\varepsilon}}}\right]^{\infty}_0
+\label{eq:emissioncurrent}
+\end{equation}
+and the current reaching the shield under reversed polarity is
+\begin{equation}
+I=e\int_{eV_r}^{\infty}\dot{N}(\varepsilon)\mathrm{d}\varepsilon = e\dot{N}_0(\sfrac{-2\bar{\varepsilon}}{3})\left[e^{\sfrac{-3\varepsilon}{2\bar{\varepsilon}}}\right]^{\infty}_{eV_r}
+\label{eq:shield current}
+\end{equation}
+where $V_r$ is the retarding potential, ie. the applied potential between the cathode, and the shield and plate electrodes.\\
+\indent Combining Eqs. \ref{eq:emissioncurrent}, \ref{eq:shield current}, we reach an expression for measured current in terms of the emission current and the voltages $V$ and $\bar{V}=\sfrac{\bar{\varepsilon}}{e}$.\\
+\begin{equation}
+I=I_0e^{\frac{3V_r}{2\bar{V}}}
+\end{equation}
+When analysing the data for this, and plotting $\mathrm{ln}(I^*_s)$ versus the applied potential $V_r$, the plot appears as two linear section, the first being the overcoming of $V_C$ by $V_r$, and the second, the overcoming of the energy which electron are emitted with, characterised in this case by $\bar{V}$.  $V_C$ is the contact potential between the cathode, and the shield and plate electrodes, The contact potential is a potential difference arising from a difference in work function between two metals in contact. Both this and $\bar{V}$ are treated as constant in this experiment. \\
+\indent From figure \ref{fig: thyratron}, it can be observed that electrons are only accelerated before the first aperture, as the shield and plate have no potential difference between them. Therefore the kinetic energy of the electrons in the medium can be approximated as
+\begin{equation}
+T = e\cdot (V + V_C+ \bar{V})
+\label{eq: total energy}
+\end{equation}
+where $\bar{V}$ is the voltage which would give an electron kinetic energy equivalent to the kinetic energy it receives during thermionic emission. This energy can be used to properties of the electron such as momentum and wavelength.\\
+\section{Methodology}
+\subsection{Setup}
+The procedure for this experiment begins by setting up the circuitry as below. Both a real image and illustration are provided.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.65\textwidth]{/home/dj-lawton/Downloads/PXL_20240325_142006393.jpg}
+\caption{\label{fig:ImageSetup}Image of the setup in regular polarity as in figure \ref{fig:DiagramSetup}. Note that the multimeter measuring $I_s$ is on the left and the multimeter measuring $I_p$ is on the right.}
+\end{center}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.65\textwidth]{/home/dj-lawton/Pictures/Screenshots/Screenshot from 2024-04-16 20-52-08.png}
+\caption{\label{fig:DiagramSetup}A diagram of the setup and thyratron.}
+\end{center}
+\end{figure}
+\subsection{Xenon Present}
+First, we ran the procedure in the presence of xenon. This involved taking measurements for $I_s$ and $I_p$ for a range of applied $V$ between 0V and 10V, as measured on the digital multimeter across it. Readings were taken at 0.1V intervals up to 2V, then at 1V intervals afterwards.
+\subsection{Xenon Absent}
+The rest of the experiment is run in the absence of xenon. The removal of the xenon was done by inverting it and placing it in liquid nitrogen. \textbf{Do not allow liquid nitrogen or objects cooled by it to come into contact with skin or eyes. Wear gloves when handling, and goggles when in use.} The same measuremnts were then repeated in the absence of xenon.\\
+\subsection{Reversed Polarity}
+To finish, we reversed the polarity between the cathode, and the shield and plate, and took the same measurements.
+\section{Results}
+The first step in analysis was to plot the cooled and room temperature xenon measurements against voltage.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/I_pvsV.jpg}
+\caption{\label{fig: I_pcomp} Comparison of unscattered current in the presence and absence of xenon gas in the thyratron.}
+\end{center}
+\end{figure}
+\begin{equation}
+V_{tot}\propto T_e,~ T_e\propto v^2 ~\Rightarrow~ v^2 \propto V_{tot}
+\end{equation}
+as above, the current should be proportional to the square in the absence of a field. Therefore, we can fit the non-zero elements of our measurement to the function
+\begin{equation}
+I = A + B|V+C|^P
+\end{equation}
+However, when fitting the function, the current appears to increase linearly, rather than the expected power of a half. \\
+\indent As expected though, the current in the cooled thyratron far exceeds that in the current in the presence of xenon.\\
+\indent Following this, we examined the probability of electrons undergoing scattering, as outlined in Eq. \ref{eq: prob}. Values of the probability $P_s$ were obtained from the various currents collected, and were plotted against external voltage.\\
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/P_svsVRTEff.jpg}
+\caption{\label{fig: probvsV}The probability of an electron being scattered shown above against voltage has a clear minimum.}
+\end{center}
+\end{figure}
+Above, the plot of $P_s$ against $V$ shows a clear minimum at $1.7\pm 0.4 ~\mathrm{V}$, with the error being taken as half the peak height. This is the minimum in scattering cross section predicted by quantum mechanical theory.\\
+\indent Next, we examined the maximum and minimum mean free paths, from the corresponding maximum and minimum values of $P_s$, and given the length of the field free region $l=7\mathrm{mm}$. Combining Eq. \ref{eq: prob}, Eq. \ref{eq: prob2} and figure \ref{fig: probvsV}, we can find the following.\\
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/MFPvsVRTEff.jpg}
+\caption{\label{fig:MFPvsV} Plot of mean free path $\lambda$ versus the applied voltage.}
+\end{center}
+\end{figure}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline 
+• & Maximum & Minimum \\
+\hline 
+$P_s$ & 0.933 $\pm 0.005$ & 0.528 $\pm 0.056$ \\ 
+\hline 
+$\lambda$ (m) & 0.00933 $\pm 0.00131$ & 0.00259 $\pm 0.00001$\\ 
+\hline 
+\end{tabular} 
+\end{center}
+From this, one could deduce the minimum and maximum of the scattering cross section $\sigma$ in terms of voltage, if given the density of xenon in the thyrator.\\
+\indent Finally, from the reverse polarity section, we can deduce $V_C$ and $\bar{V}$. We can combine the theory explained in section 2.6 with figure \ref{fig:RevPot}.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =0.9\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/RevPot.jpg}
+\caption{\label{fig:RevPot} Linear fits of separate sections of $\mathrm{log}(I_s)$, the left being the overcoming of $V_C$, and the second the overcoming of $\bar{V}$.}
+\end{center}
+\end{figure}
+From the slope of the linear fit to the right, we can find $\bar{V}$.
+\begin{equation}
+m_2=\frac{\mathrm{log}(I_s)}{V}=-\frac{3}{2\bar{V}}=-5.499\pm0.308
+\end{equation}
+\begin{equation}
+\Rightarrow \bar{V}=0.273\pm 0.015
+\end{equation}
+From the intersection of the two lines, the contact potential can be deduced.
+\begin{equation}
+V_C=0.355 \pm 0.0865
+\end{equation}
+From here we can use Eq. \ref{eq: total energy}, to calculate the function of the mean of the total energy of the electrons.
+\begin{align}
+\bar{E}& =e(0.355+0.273 +V_r)\\
+&=e(0.628+V_r)
+\end{align}
+\section{Conclusion}
+In conclusion, we explored the Ramsauer-Towsend Effect and the scattering due to it, in theory and in practice. We found maxima and minima of both scattering probability and mean free path. \\
+\indent By doing this, we verified that the scattering cross section is not independent of energy, and that it has a minimum. We then showed how one would calculate the total energy of the electrons in the medium.\\
+\indent It remains to be shown why the unscattered current is negligible up to a constant, and thus find the total voltage at which the scattering cross section is at a minimum.
+\section{References}
+\begin{enumerate}
+\item Kukolich, Stephen G. (1968). Demonstration of the Ramsauer-
+\item  Young, H. D., Freedman, R. A., Ford, A. L.,, Sears, F. W. (2012). Sears and Zemansky's University Physics: with Modern Physics. San Francisco: Pearson Addison-Wesley. 
+\item Probability Generating Function of Poisson Distribution. (Retrieved 2024, April 16). \url{https://proofwiki.org/wiki/Probability_Generating_Function_of_Poisson_Distribution}
+\end{enumerate}
+\end{document}

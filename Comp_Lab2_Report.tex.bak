@@ -1,0 +1,752 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{wrapfig}
+
+\title{The Pendulum:\\ \large{A Study of the Forces Applying to Pendulums, as Well as a Comparison of the Trapezoidal and Runge-Kutta Methods of Numerical Approximation.}}
+\author{David Lawton }
+\date{4th October 2023}
+
+\begin{document}
+
+\maketitle
+\vfill
+\tableofcontents
+
+\newpage
+\section{Abstract}
+In this experiment, the trajectories of pendulums under varying forces was simulated and analyzed. The only forces considered were ones acting along the direction of motion, damping and driving, on non-linear pendulums. Linear pendulums were considered only without external forces. As well as this, the relative accuracy of different numerical integration methods was gauged. Finally, phase space diagrams were introduced, to better illustrate the more complicated systems.
+\section{Introduction}
+This experiment simulates a pendulum (and is modifiable to any harmonic oscillator). In the case of a simple pendulum, $L \ddot{\theta}$ replaces $\ddot{x}$ in the equation of motion, and the magnitude of the force is equal to $\mathrm{g}\cdot\mathrm{sin}(\theta)$.\\
+\begin{equation}
+F=m\ddot{x} \rightarrow mL\ddot{\theta}=-m\mathrm{g}\cdot\mathrm{sin}(\theta). 
+\end{equation}
+In the first section, for a pendulum to be \textbf{linear}, the equation must be \textbf{linearised} by approximating sin($\theta$) to $\theta$, which is a decent approximation for small angle rotations of a pendulum. The second derivative of $\theta$ is then approximated to be as below.\\
+\begin{equation}
+\label{eq:linear}
+\ddot{\theta} = -\frac{\mathrm{g}}{L}\cdot\theta
+\end{equation}
+\begin{wrapfigure}{r}{0.3\textwidth}
+\begin{center}
+\includegraphics[width=0.25\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Trapezoidal.png}
+\caption{\label{fig:Trapmethod}Approximation using the trapezoidal rule}
+\end{center}
+\end{wrapfigure}
+This is done using the \textbf{trapezoidal rule}, a method accurate to order $\Delta t$. As $\Delta t$ gets smaller the aproximation gets more accurate.\\
+\indent The second section simulates the similar, more accurate, non-linear pendulum, which simulates a frictionless weight attched to an inelastic rope of negligible mass, attached to a fixed point, moving through any angle.\\
+\begin{equation}
+\label{eq:non-linear}
+\ddot{\theta}=-\frac{\mathrm{g}}{L} \cdot \mathrm{sin}(\theta)
+\end{equation}\\
+\newpage
+\begin{wrapfigure}{l}{0.3\textwidth}
+\begin{center}
+\includegraphics[width=0.25\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/R-K2nd.png}
+\caption{\label{fig:R-Kmethod}The 2nd order Runge-Kutta Method.}
+\end{center}
+\end{wrapfigure}
+
+
+Next, the \textbf{Runge-Kutta algorithm}, for solving integration numerically, is implemented for the more complex non-linear equations. It is also used on the non-linear pendulum to show its efficiency versus the trapezoidal method. This second-order method is accurate to order $\Delta\mathrm{t}^2$, these Runge-Kutta approximations can also be used for higher orders, gaining complexity for each one. As can be seen in figure (\ref{fig:R-Kmethod}), the second-order Runge-Kutta method approximates point $y(t+\Delta t)$ by taking the taylor series around the halfway point at $t+\frac{\Delta t}{2}$. In this experiment, we used the fourth order Runge-Kutta method, which is similar but accurate to order $\Delta t^4$. This is a weighted average of slopes at the start, end and midpoint, the first midpoint found using the slope at the start, and the second using the slope at the first midpoint from the start, for a more detailed explanation, please use another source.\\
+\indent As we continue, a \textbf{damping force} is added to the equation of motion, a force directly proportional to the angular velocity, for the case of the pendulum, and in opposition to it, $L\dot{\theta}$. The resulting equation of motion is as below.
+\begin{equation}
+\label{eq:motiondamp}
+\ddot{\theta} = -\frac{\mathrm{g}}{L} \cdot \mathrm{sin}(\theta)-k\omega,\hspace{2mm}\omega = \dot{\theta}
+\end{equation}
+This damping force can be likened to friction for a pendulum. It is a force which reduces the energy of the system at a rate proportional to, in this case, $\dot{\theta}$.\\
+\indent The next force to be considered, is the driving force `$F_D$'. This is an external force which puts energy into the system, and acts independent of the state of the system. in the case of the pendulum we consider the force below.
+\begin{equation}
+\label{eq:drivingf}
+F_D = A\cdot\mathrm{cos}(\phi t), \text{ where } \phi \text{, }A \text{ are constants}
+\end{equation}
+This force, $F_D$ is periodic in our experiment, and at periods of $F_D$ not equal to the period of the motion or a multiple of that, our system becomes chaotic, that is to say, in the words of Edward Lorenz, `the present determines the future, but the approximate present does not approximately determine the future'. The final equation of motion is below.
+\begin{equation}
+\label{eq:motiondrdamp}
+\ddot{\theta} = -\frac{\mathrm{g}}{L} \cdot \mathrm{sin}(\theta)-k\omega + A\cdot \mathrm{cos}(\phi t)
+\end{equation}
+\newpage
+\section{Methodology}
+\subsection{The Linear Pendulum}
+In the first case, we use our linearised equation of motion of the simple pendulum over small angle rotations, Eqn.~\ref{eq:linear}. This is a rather simple function below, where `a' is an initial $\theta$, `b' is an initial $\dot{\theta}$ and `c' is time. For this section, $k$ and $A$ are zero.
+\begin{lstlisting}
+k = 0.0
+p = 0.66667
+A = 0.0
+
+def func(a, b, c):
+    return -a - k * b + A*(np.cos(p*c))
+\end{lstlisting}
+We then designed our function for numerical integraion using the trapezoidal rule, where we constructed parameters inside a `for' loop to approximate points at different `timesteps'. List were made, and appended inside the loop to store these points and steps.
+\begin{lstlisting}
+timesteps = np.arange(0, 100, 0.01)
+THlist = []
+OMlist = []
+Nsteps = []
+
+def trap(a, b, c):
+    th = a
+    om = b
+    t = c
+    nsteps = 0
+    for n in timesteps:
+        pa = dt * om
+        pb = dt * func(th, om, t)
+        qa = dt * (om + pb)
+        qb = dt * func(th + pa, om + pb, t + dt)
+        
+        th = th + (pa + qa) / 2
+        om = om + (pb + qb ) / 2
+        t = n
+        nsteps += 1
+        THlist.append(th)
+        OMlist.append(om)
+        Nsteps.append(nsteps)
+\end{lstlisting}
+Following this graphs were made for various initial values of $\theta$, but with $\dot{\theta}$ and $t$ always initialised at zero. After observation, this is because, we want to set the maximum angle of the motion, and we can only set this to a known value if one of $\theta$ and $\dot{\theta}$ is zero initially. The deviation of this from the non-linear case increases as theta increases.
+\subsection{The Non-linear Pendulum}
+The second case is that of the non-linear pendulum. This case is the exact version of the previous case, and is accurate for any $\theta$. This uses the equation of motion illustrated in Eqn.~\ref{eq:non-linear}. The non-linear pendulum is simulated by similar code as in the previous, linear, case, but with the initial func changed to that below.
+\begin{lstlisting}
+k = 0.0
+p = 0.66667
+A = 0.0
+
+def func(a, b, c):
+    return -np.sin(a) - k * b + A*(np.cos(p*c))
+\end{lstlisting}
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex2/lin_vs_non-lin2.pdf} & \includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex2/lin_vs_non-lin.pdf}\\
+\end{tabular}
+\caption{\label{fig:lin_vs_non-lin}A comparison of how the error of the linear case grows with initial $\theta$.} 
+\end{center}
+\end{figure}
+I thought it prudent to compare the linear and non-linear cases, in the form of figure (\ref{fig:lin_vs_non-lin}). This makes it evident that the linear case is not exact, and that its error grows with the number of steps.
+\subsection{The Fourth-order Runge-Kutta Method}
+The basic principles behind the Runge-Kutta methods was explained earlier, using Eqn.~\ref{fig:R-Kmethod}, now the code for the fourth-order method will be shown. It is a more complex and accurate approximation of the motion, but it uses similar parameters in the code. This is because the method involving the trapezoidal rule is similar to a lower order Runge-Kutta method.
+\begin{lstlisting}
+THlistR = []
+OMlistR = []
+NstepsR = []
+
+def RK4(a, b, c):
+    th = a
+    om = b
+    t = c
+    nsteps = 0
+    for n in timesteps:
+        pa = dt * om
+        pb = dt * func(th, om, t)
+        
+        qa = dt * (om + pb/2)
+        qb = dt * func(th + pa/2, om + pb/2, t + dt/2)
+        
+        ra =dt * (om + qb/2)
+        rb =dt * func(th + qa/2, om + qb/2, t + dt/2)
+        
+        sa = dt * (om + rb)
+        sb = dt * func(th + ra, om + rb, t + dt)
+        
+        th = th + (pa + 2*qa + 2*ra + sa) / 6
+        om = om + (pb + 2*qb + 2*rb + sb) / 6
+        t = n
+        nsteps += 1
+        THlistR.append(th)
+        OMlistR.append(om)
+        NstepsR.append(nsteps)
+\end{lstlisting}
+This is applied to the non-linear pendulum and all following sections. The parameters here labelled with `a' and `b'  represent $\Delta\theta$ and $\Delta\dot{\theta}$ respectively, at different points. Those labelled with `p' being at the initial point, `q' being at the first midpoint estimate, `r' being at the second midpoint estimate and `s' being at the estimated final point. This then adds a weighted average of these to both $\theta$ and $\dot{\theta}$. This method is proven to have a much higher order of accuracy, but how can we demonstrate the difference versus the earlier method?
+\subsection{The Damped, Non-linear pendulum}
+The case of the damped, non-linear pendulum is now considered. This, once again, uses the Runge-Kutta method of integration, as well as the non-linearised equation of motion. However, we now set $k$ to a non-zero value.
+\begin{lstlisting}
+k = 0.2
+p = 0.66667
+A = 0.0
+
+def func(a, b, c):
+    return -np.sin(a) - k * b + A*(np.cos(p))*c
+\end{lstlisting} 
+This is a relatively simple case in terms of changes in methodology.
+\subsection{The Damped, Driven, Non-linear Pendulum}
+This, the final case taken into account, is that of the previous case, but with the added caveat of a periodic driving force. Again, this is the same non-linearised equation as the previous case, but now with a non-zero value of $A$.
+\begin{lstlisting}
+k = 0.5
+p = 0.66667
+A = 1.47
+
+def func(a, b, c):
+    return -np.sin(a) - k*b + A*(np.cos(p*c))
+\end{lstlisting}
+There are two other changes made in this section. The first is due to the fact that, because of the driving force, the pendulums makes full rotations, so a slight modification is made to $\theta $ values greater than $\pi$. The following is added between the finding of the $\theta$ values and the appending of the lists.The other change is to do with the \textit{transient} motion before the \textbf{limit cycle} is reached. The limit cycle is the steady state, periodic motion reached after transient motion.This results in the below version of the fourth-order Runge-Kutta method code.
+\begin{lstlisting}
+def runge(a, b, c):
+    th = a
+    om = b
+    t = c
+    iteration_number = 0
+    transient=5000
+    for n in range(220000):
+        pa = dt * om
+        pb = dt * func(th, om, t)
+        
+        qa = dt * (om + pb/2)
+        qb = dt * func(th + pa/2, om + pb/2, t + dt/2)
+        
+        ra =dt * (om + qb/2)
+        rb =dt * func(th + qa/2, om + qb/2, t + dt/2)
+        
+        sa = dt * (om + rb)
+        sb = dt * func(th + ra, om + rb, t + dt)
+        
+        th = th + (pa + 2*qa + 2*ra + sa) / 6
+        om = om + (pb + 2*qb + 2*rb + sb ) / 6
+        if (np.abs(th) > np.pi):
+            th -= 2 * np.pi * np.abs(th) / th
+        t = t+dt
+        iteration_number += 1
+        if iteration_number > transient:
+            THlistR.append(th)
+            OMlistR.append(om)
+            NstepsR.append(iteration_number)
+\end{lstlisting}
+The best fashion of illustration for this section, is as a phase space, as it illustrates well the changing `chaos' for different values of $A$. This is created by graphing $\dot{\theta}$ versus $\theta$. For undamped, undriven systems this is a circle, and for damped ones it is a spiral toward the origin.
+\section{Results}
+\subsection{The Linear Pendulum}
+The best way to illustrate results for the linear pendulum is in the form of graphs. The only variable for this is the initial $\theta$ and $\dot{\theta}$ values. 
+\begin{figure}[H]
+	\begin{center}
+	\begin{tabular}{cc}
+	\includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex1/THOM_vs_steps2.pdf} & \includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex1/THOM_vs_steps3.pdf}\\
+	\end{tabular}
+	\caption{\label{fig:Linear Pendulum Theta}The motion of a linear pendulum under a change in initial $\theta$}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+	\begin{tabular}{cc}
+	\includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex1/THOM_vs_steps4.pdf} & \includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex1/THOM_vs_steps5.pdf}\\
+	\end{tabular}
+	\caption{\label{fig:Linear Pendulum Omega}The motion of a linear pendulum under a change in initial $\dot{\theta}$}
+	\end{center}
+\end{figure}
+Further comments will be made in the conclusion.
+\subsection{The Non-linear Pendulum}
+The results of the non-linear pendulum, much like those of the linear pendulum are best seen visualised. This case also has the same variables as the linear case.\\
+\begin{figure}[H]
+	\begin{center}
+	\begin{tabular}{cc}
+	\includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex2/THOMvsNsteps2nl.pdf} & \includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex2/THOMvsNsteps3nl.pdf}\\
+	\end{tabular}
+	\caption{\label{fig:Non-Linear Pendulum Theta}The motion of a non-linear pendulum under a change in initial $\theta$}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+	\begin{tabular}{cc}
+	\includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex2/THOMvsNsteps4nl.pdf} & \includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex2/THOMvsNsteps5nl.pdf}\\
+	\end{tabular}
+	\caption{\label{fig:Non-Linear Pendulum Omega}The motion of a non-linear pendulum under a change in initial $\dot{\theta}$}
+	\end{center}
+\end{figure}
+These results are clearly more interesting, and it appears strange, large errors occur for larger initial values of $\theta$ and $\dot{\theta}$.
+\subsection{The Fourth-Order Runge-Kutta}
+I found that the best way of presenting results for the introduction of the fourth-order Runge-Kutta method is to illustrate the relative error between the `trapezoidal' and Runge-Kutta methods using a comparison. To visualise this I graphed $\theta$ versus time over a large interval using both the fourth-order Runge-Kutta method and the `trapezoidal' method, as in figure (\ref{fig:R-K_vs_Trap}).
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex3/RungvsTrapnl.pdf}
+\caption{\label{fig:R-K_vs_Trap}The 4th order Runge-Kutta Method versus the `trapezoidal' method}
+\end{center}
+\end{figure}
+Over small time intervals, the error is minimal, but as the interval grows larger, the relative truncation error builds up, and the approximation by trapezoidal rule appears to be running at a slightly longer period. Perhaps it would be interesting to see the difference between a higher order Runge-Kutta method and the fourth-order Runge-Kutta method in a similar. Interestingly, after observation over the trapezoidal rule method eventually diverges, with this happening earlier with initial values of $\theta$ near $\pi$.
+\subsection{The Damped Pendulum}
+Much like the first sections 4.1 and 4.2 results of the damped pendulum are best displayed in the form of graphs. As can be seen below in figure (\ref{fig:Damped}), both $\theta$ and $\dot{\theta}$ decrease over time in a damped system.
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex4/THOMGraphs.pdf} & \includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex4/THOMGraphDampPhase.pdf}
+\end{tabular}
+\caption{\label{fig:Damped}This graph compares the decreases in magnitude of $\theta$ and $\dot{\theta}$}
+\end{center}
+\end{figure}
+It is evident in both of these representations of the motion that the pendulum slows until the motion approaches static.
+\subsection{The Driven, Damped Pendulum}
+This is a similar case to the damped pendulum but with an extra, periodic driving force as previously mentioned. The only meaningful representations of this are in the phase space figures below.
+\begin{figure}[H]
+\begin{center}
+	\begin{tabular}{cc}
+	\includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex5/THOMGraph3b.pdf} & \includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex5/THOMGraph4b.pdf}\\
+	(a) $A = 1.35$ & \parbox[t]{5cm}{(b) $A = 1.47$}
+	\end{tabular}
+\caption{\label{fig:DrDaPend1} Phase space for varying $A$}
+\end{center}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/Lab2 Plots/Ex5/THOMGraph5b.pdf}
+\caption{\label{fig:DrDaPend2} Phase space for $A = 1.5$}
+\end{center}
+\end{figure}
+
+\section{Conclusion}
+There are several conclussions to be taken from this experiment. Firstly, the amplitude of the swing of a linear or non-linear pendulum is simply dependent on the initial $\theta$ and $\dot{\theta}$.\\
+\indent The second conclusion taken from this experiment is that, while in reality it is more accurate, when using the trapezoidal rule for non-linear pendulums, there is massive error. This is due to the relatively slow convergence of the trigonometric functions to periodic motion in these approximations for large initial $\theta$ values (see figure (\ref{fig:Non-Linear Pendulum Theta})). As well as this, on further study of large step value graphs, it can be seen that often, for these large initial $\theta$ values, $\theta$ diverges, indicating that it begins to rotate completely, which would violate the conservation of energy. I would hypothesise that this happens due to the trapezoidal algorithm only taking into account the slope at the midpoint which, when $\theta$ is approaching $\pi$, is more likely to predict the subsequent point as on the opposite side of $\pi$ or $-\pi$. Additionally, I would suppose that this occurs only in one direction once it diverges because the greater order terms ignored, which keep the motion sinusoidal at its limits, are more significant at the limits due to that fact, and once they overcome the included terms once they will always overcome them.\\
+\indent The third conclusion I would make, would be that while both of the numerical methods used were mostly accurate, neither was especially accurate for the non-linear pendulum at large initial $\theta$ or $\dot{\theta}$ values .
+\indent The only conclusion I can think to make from the damped case is that the energy of the system will approach zero as time increases.
+\indent For the driven damped case, the conclusion I have come to is that the system becomes more complex the farther the period of the driving force is from a integer multiple of the  period of the motion without it. It can also be seen that this complexity seems to increase almost exponentially in this fashion.
+\section{Bibliography}
+2023. 2nd year Physics Lab Manual. School of Physics, Trinity College Dublin, Dublin 2.\\
+1992. The Physics Teacher, Vol. 30. `Chaos and the Simple Pendulum', Marvin L. de Jong.\\
+
+\section{Appendix}
+Some file paths have been excluded to fit in page\\
+The code for section 1:
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+
+k = 0.0
+p = 0.66667
+A = 0.0
+
+theta = 0.2
+omega = 0.0
+t = 0.0
+dt = 0.01
+timesteps = np.arange(0, 100, 0.001)
+THlist = []
+OMlist = []
+Nsteps = []
+
+def func(a, b, c):
+    return -a - k * b + A*(np.cos(p*c))
+
+def trap(a, b, c):
+    th = a
+    om = b
+    t = c
+    nsteps = 0
+    for n in timesteps:
+        pa = dt * om
+        pb = dt * func(th, om, t)
+        qa = dt * (om + pb)
+        qb = dt * func(th + pa, om + pb, t + dt)
+        
+        th = th + (pa + qa) / 2
+        om = om + (pb + qb ) / 2
+        t = n
+        nsteps += 1
+        THlist.append(th)
+        OMlist.append(om)
+        Nsteps.append(nsteps)
+
+
+
+
+print(func(0.5, 0.7, 6))
+trap(0, 2.0, 0)
+
+titlefont = {'fontname':'serif', 'size':16}
+font = {'fontname':'serif', 'size':12}
+
+plt.figure()
+plt.axis([0, 1000, -np.pi, np.pi])
+plt.plot(Nsteps, THlist, '-b', markersize=0.5, label='Theta')
+plt.plot(Nsteps, OMlist, '-r', markersize=0.5, label='Omega')
+plt.legend(loc="upper right")
+plt.savefig('/.../THOM_vs_steps5.pdf')
+plt.show()
+\end{lstlisting}
+The code for section 2:
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+
+k = 0.0
+p = 0.66667
+A = 0.0
+
+theta = 0.2
+omega = 0.0
+t = 0.0
+dt = 0.01
+timesteps = np.arange(0, 100, 0.01)
+THlist = []
+OMlist = []
+Nsteps = []
+THlist2 = []
+OMlist2 = []
+Nsteps2 = []
+
+def func(a, b, c):
+    return -np.sin(a) - k * b + A*(np.cos(p*c))
+
+def trap(a, b, c):
+    th = a
+    om = b
+    t = c
+    nsteps = 0
+    for n in timesteps:
+        pa = dt * om
+        pb = dt * func(th, om, t)
+        qa = dt * (om + pb)
+        qb = dt * func(th + pa, om + pb, t + dt)
+        
+        th = th + (pa + qa) / 2
+        om = om + (pb + qb ) / 2
+        t = n
+        nsteps += 1
+        THlist.append(th)
+        OMlist.append(om)
+        Nsteps.append(nsteps)
+
+def func2(a, b, c):
+    return -a - k * b + A*(np.cos(p*c))
+
+def trap2(a, b, c):
+    th = a
+    om = b
+    t = c
+    nsteps = 0
+    for n in timesteps:
+        pa = dt * om
+        pb = dt * func2(th, om, t)
+        qa = dt * (om + pb)
+        qb = dt * func2(th + pa, om + pb, t + dt)
+        
+        th = th + (pa + qa) / 2
+        om = om + (pb + qb ) / 2
+        t = n
+        nsteps += 1
+        THlist2.append(th)
+        OMlist2.append(om)
+        Nsteps2.append(nsteps)
+
+
+titlefont = {'fontname':'serif', 'size':16}
+font = {'fontname':'serif', 'size':12}
+
+
+print(func(0.5, 0.7, 6))
+trap(0, 2.0, 0)
+trap2(0, 0.5, 0)
+
+plt.figure()
+plt.axis([0, 1000, -np.pi, np.pi])
+plt.plot(Nsteps, THlist, '-b', label='Theta')
+plt.plot(Nsteps, OMlist, '-r', label='Omega')
+plt.legend(loc="upper right")
+plt.savefig('/.../THOMvsNsteps5nl.pdf')
+plt.show()
+
+plt.figure()
+plt.title('Non-Linear vs Linear Pendulum', fontdict = titlefont)
+plt.ylabel('Theta (rad)', fontdict = font)
+plt.xlabel('Steps', fontdict = font)
+plt.axis([0, 1000, -np.pi-1, np.pi+1])
+plt.plot(Nsteps, THlist, '-b', label='Non-linear')
+plt.plot(Nsteps2, THlist2, '-r', label='Linear')
+plt.legend(loc="upper right")
+plt.savefig('/.../lin_vs_non-lin2.pdf')
+plt.show()
+#Slight phase shifts between linear and non linear
+#pi produces a straight line
+#and 3.14 produces a strange graph 
+#due to the very small change in the variables
+#sin(theta) ~ 0
+\end{lstlisting}
+This is the code for section 3:
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+
+k = 0.0
+p = 0.66667
+A = 0.0
+
+theta = 0.2
+omega = 0.0
+t = 0.0
+dt = 0.01
+timesteps = np.arange(0, 10000, 0.01)
+THlisttr = []
+OMlisttr = []
+Nstepstr = []
+THlistR = []
+OMlistR = []
+NstepsR = []
+
+def func(a, b, c):
+    return -np.sin(a) - k*b + A*(np.cos(p*c))
+
+def trap(a, b, c):
+    th = a
+    om = b
+    t = c
+    nsteps = 0
+    for n in range(len(timesteps)):
+        pa = dt * om
+        pb = dt * func(th, om, t)
+        qa = dt * (om + pb)
+        qb = dt * func(th + pa, om + pb, t + dt)
+        
+        th = th + (pa + qa) / 2
+        om = om + (pb + qb) / 2
+        t = t+dt
+        nsteps += 1
+        THlisttr.append(th)
+        OMlisttr.append(om)
+        Nstepstr.append(nsteps)
+
+def runge(a, b, c):
+    th = a
+    om = b
+    t = c
+    nsteps = 0
+    for n in range(len(timesteps)):
+        pa = dt * om
+        pb = dt * func(th, om, t)
+        
+        qa = dt * (om + pb/2)
+        qb = dt * func(th + pa/2, om + pb/2, t + dt/2)
+        
+        ra =dt * (om + qb/2)
+        rb =dt * func(th + qa/2, om + qb/2, t + dt/2)
+        
+        sa = dt * (om + rb)
+        sb = dt * func(th + ra, om + rb, t + dt)
+        
+        th = th + (pa + 2*qa + 2*ra + sa) / 6
+        om = om + (pb + 2*qb + 2*rb + sb) / 6
+        t = n
+        nsteps += 1
+        THlistR.append(th)
+        OMlistR.append(om)
+        NstepsR.append(nsteps)
+
+
+
+
+print(func(0.5, 0.7, 6))
+trap(3.14159, 0.0, 0)
+runge(np.pi, 0.0, 0)
+
+titlefont = {'fontname':'serif', 'size':16}
+font = {'fontname':'serif', 'size':12}
+
+plt.figure()
+plt.axis([0, 500, -np.pi-1, np.pi+1])
+plt.ylabel('Theta', fontdict=font)
+plt.xlabel('Steps', fontdict=font)
+plt.plot(timesteps, THlisttr, '.b', label='Tr Theta')
+plt.plot(timesteps, THlistR, '.r', label='R-K Theta')
+plt.legend(loc="upper right")
+plt.savefig('/.../RungvsTrapnl.pdf')
+plt.show()
+\end{lstlisting}
+This is the code for section 4:
+\begin{lstlisting}
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
+k = 0.2
+p = 0.66667
+A = 0.0
+
+theta = 0.2
+omega = 0.0
+t = 0.0
+dt = 0.01
+timesteps = np.arange(0, 100, 0.01)
+THlisttr = []
+OMlisttr = []
+Nstepstr = []
+THlistR = []
+OMlistR = []
+NstepsR = []
+
+def func(a, b, c):
+    return -np.sin(a) - k * b + A*(np.cos(p))*c
+
+def trap(a, b, c):
+    th = a
+    om = b
+    t = c
+    nsteps = 0
+    for n in timesteps:
+        pa = dt * om
+        pb = dt * func(th, om, t)
+        qa = dt * (om + pb)
+        qb = dt * func(th + pa, om + pb, t + dt)
+        
+        th = th + (pa + qa) / 2
+        om = om + (pb + qb ) / 2
+        t = n
+        nsteps += 1
+        THlisttr.append(th)
+        OMlisttr.append(om)
+        Nstepstr.append(nsteps)
+
+def runge(a, b, c):
+    th = a
+    om = b
+    t = c
+    nsteps = 0
+    for n in timesteps:
+        pa = dt * om
+        pb = dt * func(th, om, t)
+        
+        qa = dt * (om + pb)
+        qb = dt * func(th + pa, om + pb, t + dt)
+        
+        ra =dt * (om + qb/2)
+        rb =dt * func(th + qa/2, om + qb/2, t + dt/2)
+        
+        sa = dt * (om + rb)
+        sb = dt * func(th + ra, om + rb, t + dt)
+        
+        th = th + (pa + 2*qa + 2*ra + sa) / 6
+        om = om + (pb + 2*qb + 2*rb + sb ) / 6
+        t = n
+        nsteps += 1
+        THlistR.append(th)
+        OMlistR.append(om)
+        NstepsR.append(nsteps)
+
+
+
+
+print(func(0.5, 0.7, 6))
+trap(3, 0.0, 0)
+runge(3, 0.0, 0)
+
+titlefont = {'fontname':'serif', 'size':16}
+font = {'fontname':'serif', 'size':12}
+
+plt.figure()
+plt.suptitle('...', fontdict=titlefont)
+plt.subplot(211)
+plt.ylabel('Theta (radians)', fontdict=font)
+plt.axis([0, 100, -np.pi, np.pi])
+plt.plot(timesteps, THlistR, '.b', markersize=0.1, label='Rung-Kutta Theta')
+plt.legend(loc="upper right")
+plt.subplot(212)
+plt.ylabel('Omega (radians)', fontdict=font)
+plt.xlabel('Time ((10^-2)s)')
+plt.axis([0, 100, -np.pi, np.pi])
+plt.plot(timesteps, OMlistR, '-y', label='Runge-Kutta Omega')
+plt.legend(loc="upper right")
+plt.savefig('/.../THOMGraphs.pdf')
+plt.show()
+
+plt.figure()
+plt.title('Phase space of a damped system', fontdict=titlefont)
+plt.ylabel('Omega(radians)', fontdict=font)
+plt.xlabel('Theta(radians)', fontdict=font)
+plt.plot(THlistR, OMlistR, '.',markersize=0.5, label='Runge-Kutta Theta')
+plt.legend(loc="upper left")
+plt.savefig('/.../THOMGraphDampPhase.pdf')
+plt.show()
+\end{lstlisting}
+This is the code for section 5: 
+\begin{lstlisting}
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
+k = 0.5
+p = 0.66667
+A = 3.05
+
+t = 0.0
+dt = 0.01
+timesteps = np.arange(0, 1000, 0.01)
+iteration_number = 0
+THlisttr = []
+OMlisttr = []
+Nstepstr = []
+THlistR = []
+OMlistR = []
+NstepsR = []
+
+
+def func(a, b, c):
+    return -np.sin(a) - k*b + A*(np.cos(p*c))
+
+def trap(a, b, c):
+    th = a
+    om = b
+    t = c
+    nsteps = 0
+    for n in timesteps:
+        pa = dt * om
+        pb = dt * func(th, om, t)
+        qa = dt * (om + pb)
+        qb = dt * func(th + pa, om + pb, t + dt)
+        
+        th = th + (pa + qa) / 2
+        om = om + (pb + qb ) / 2
+        t = n
+        if (np.abs(th) > np.pi):
+            th -= 2 * np.pi * np.abs(th) / th
+        nsteps += 1
+        THlisttr.append(th)
+        OMlisttr.append(om)
+        Nstepstr.append(nsteps)
+
+def runge(a, b, c):
+    th = a
+    om = b
+    t = c
+    iteration_number = 0
+    transient=5000
+    for n in range(220000):
+        pa = dt * om
+        pb = dt * func(th, om, t)
+        
+        qa = dt * (om + pb/2)
+        qb = dt * func(th + pa/2, om + pb/2, t + dt/2)
+        
+        ra =dt * (om + qb/2)
+        rb =dt * func(th + qa/2, om + qb/2, t + dt/2)
+        
+        sa = dt * (om + rb)
+        sb = dt * func(th + ra, om + rb, t + dt)
+        
+        th = th + (pa + 2*qa + 2*ra + sa) / 6
+        om = om + (pb + 2*qb + 2*rb + sb ) / 6
+        if (np.abs(th) > np.pi):
+            th -= 2 * np.pi * np.abs(th) / th
+        t = t+dt
+        iteration_number += 1
+        if iteration_number > transient:
+            THlistR.append(th)
+            OMlistR.append(om)
+            NstepsR.append(iteration_number)
+
+
+
+
+print(func(0.5, 0.7, 6))
+trap(3.14, 0.0, 0)
+runge(3.14, 0.0, 0)
+
+titlefont = {'fontname':'serif', 'size':16}
+font = {'fontname':'serif', 'size':12}
+
+print(THlistR)
+print(OMlistR)
+plt.figure()
+plt.title('...', fontdict=titlefont)
+plt.ylabel('Omega(radians)', fontdict=font)
+plt.xlabel('Theta(radians)', fontdict=font)
+plt.plot(THlistR, OMlistR, '.r',markersize=0.5, label='Runge-Kutta Theta')
+plt.legend(loc="upper left")
+plt.savefig('/.../THOMGraph5b.pdf')
+plt.show()
+\end{lstlisting}
+\end{document}

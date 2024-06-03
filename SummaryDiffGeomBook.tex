@@ -1,0 +1,146 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{amsmath, amssymb}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{mathalpha}
+\usepackage{tikz}
+\usepackage{cite}
+\usepackage{braket}
+\hypersetup{
+  colorlinks   = true,    % Colours links instead of ugly boxes
+  urlcolor     = blue,    % Colour for external hyperlinks
+  linkcolor    = blue,    % Colour of internal links
+  citecolor    = red      % Colour of citations
+}
+
+\title{Summation of Geometry, Topology and Physics}
+\author{Original Work by Nakahara, M.\\Summary by David Lawton\\ Student of Theoeretical Physics, TCD.}
+\date{April 8th 2024}
+
+\begin{document}
+
+\maketitle
+\vfill
+\tableofcontents
+
+\newpage
+
+\section{Chapter 1: Quantum Physics}
+Chapter introducing the reader to path integral quantization.
+\subsection{Analytical Mechanics}
+The first section, on analytical mechanics recap topics of mechanics covered in the TCD modules Mechanics \& Advanced Classical Mechanics I \& II.\\
+\indent The covered topics include Newtonian mechanics, as well as the Lagrangian formalism and the Hamiltonian formalism. The key outcomes of this to be used in quantum mechanics are the Hamiltonian, Poisson brackets, as an introduction to Lie brackets, symmetries and conserved quantities, and phase and configuration spaces.
+\subsection{Canonical Quantization}
+\subsubsection{Hilbert space, bras and kets}
+First we must define Hilbert spaces, denoted $\mathcal{H	}$. In QM, a Hilbert space usually means the space of square integrable\footnote{Square integrable functions on space $M$ are those with the integral of the square of their absolute value being finite over $M$.} functions $L^2(M)$ on a space (manifold) $M$. However we are required to deal with functions with infinite norm. We then use the rigged Hilbert space, which is the extended Hilbert space containing these functions.
+\begin{equation}
+\mathcal{H}=\lbrace |\phi \rangle, |\psi\rangle, ...\rbrace
+\end{equation}
+Elements of $\mathcal{H}$ are called \textbf{kets} or \textbf{ketvectors}. A ket $|a\rangle$ denotes a particular vector in Hilbert-space. A \textbf{bra}, or \textbf{bra vector}, $\langle \beta|$ denotes a linear map\footnote{A linear map $\alpha$ is a map with the property of linearity:
+$\alpha(c_1|\psi_1\rangle + c_2|\psi_2\rangle) = c_1\alpha(|\psi_1\rangle)+c_2\alpha(|\psi_2\rangle) ~~~\forall c_i\in \mathbb{C}, |\psi_i\rangle\in \mathcal{H}.$}, $\beta : \mathcal{H}\rightarrow \mathbb{C}$, mapping each vector in Hilbert space to a number in $\mathcal{C}$. The action of this linear map $\langle \beta |$ on the vector $|a\rangle$ is then denoted by $\langle\beta|a\rangle\in \mathbb{C}$.\\
+\indent The set of linear functions is also a vector space called the dual vector space of $\mathcal{H}$. This vector space is denoted by $\mathcal{H}^*$, and just as kets are elements of $\mathcal{H}$, bras are elements of $\mathcal{H}^*$.\\
+\indent We can let the basis of $\mathcal{H}$ be described by $\lbrace e_1,e_2,...\rbrace$, with the assumptions that $\mathcal{H}$ is separable, and has a countably infinite number of vectors in the basis. This allows us to decompose any $|\psi\rangle$, $|\psi\rangle=\sum_k\psi_k|e_k\rangle$. Similarly we introduce a basis $\lbrace \varepsilon_1, \varepsilon_2, ...\rbrace$ for $\mathcal{H}^*$ which is required to be a dual basis of $\lbrace|e_k\rangle\rbrace$.\footnote{This implies that $\langle\varepsilon_i|e_j\rangle=\delta_{ij}$.}\\
+\indent Since we can decompose both $|\psi\rangle$ and $\langle \beta|$, the action of $\langle\beta|$ on $|\psi\rangle$ can be written as
+\begin{equation}
+\langle \beta|\psi\rangle = \sum_{i,j} \beta_i\psi_j\langle\varepsilon_i|e_j\rangle= \sum_{i,j}\beta_i\psi_j\delta_ij=\sum_{i,j}\beta_i\psi_i
+\label{eq: bra-ket action}
+\end{equation}
+This can be seen as similar to the product of a vector and a 1-form, producing a scalar.\\
+\indent A one-to-one correspondence can be introduced between $\mathcal{H}$ and $\mathcal{H}^*$. With fixed bases $\lbrace |e_k\rangle\rbrace$ and $\lbrace\langle\varepsilon_k|\rbrace$, for $\mathcal{H}$ and $\mathcal{H}^*$ respectively, for each $|\psi\rangle=\sum_k\psi_k|e_k\rangle$ there exists a $\langle\psi| = \sum_k\psi^*_k\langle\varepsilon_k| \in \mathcal{H}^*$. It is then possible to define an inner product between two elements $|\phi\rangle$, $|\psi\rangle\in \mathcal{H}$ as
+\begin{equation}
+(|\phi\rangle, |\psi\rangle) \equiv \langle \phi | \psi \rangle = \sum_k \phi^*_k\psi_k.
+\label{eq: innerproduct}
+\end{equation}
+Corresponding bras, kets customarily use the same letter/symbol. From the inner product, we can define the \textbf{norm} of a vector $|\psi\rangle$ as 
+\begin{equation}
+\||\psi\rangle\|=\sqrt{\langle\psi|\psi\rangle}
+\label{eq: norm}
+\end{equation}
+easily shown that this satisfies all axioms of the norm, the triangle inequality, absolute homogeneity and positive definiteness. It satisfies positive definiteness due to the complex conjugation of bras.\\
+\indent The definition of the inner product allows the construction of an orthonormal basis $\lbrace|e_k\rangle\rbrace$ of $\mathcal{H}$ such that $(|e_i\rangle,|e_j\rangle)=\delta_{i,j}$. It can be shown from the definition of $|\psi\rangle$ that $\langle e_k|\psi\rangle=\psi_k$. This can be inserted into the definition of $|\psi\rangle$ to give $|\psi\rangle=\sum_k|e_k\rangle\langle e_k|\psi\rangle$. Since it is true for all $|\psi\rangle$, this defines the completeness relation
+\begin{equation}
+\sum_k|e_k\rangle\langle e_k| = I
+\label{eq: completeness}
+\end{equation}
+where $I$ is the identity operator of $\mathcal{H}$. (unit matrix when $\mathcal{H}$ is finite dimensional.\\
+\subsection{Axioms of Canonical Quantization}
+For isolated classical dynamical systems, corresponding quantum systems can be constructed following this set of axioms:\\
+\hrule
+\begin{enumerate}
+\item There exists Hilbert space $\mathcal{H}$ for a quantum system, and the state of the system is described by a vector $|\psi\rangle\in\mathcal{H}$. $|\psi\rangle$ is then called the \textbf{state} or a \textbf{state vector}. Any two states $|\psi\rangle$, $|\phi\rangle$, such that $|\phi\rangle = c\cdot|\psi\rangle,~c\in\mathbb{C},~c\neq 0$, are equivalent, ie. they describe the same state. The state can also be described as a \textbf{ray representation} of $\mathcal{H}$.\\
+\item Physical quantity $A$ in CM is replaced by Hermitian operator $\hat{A}$ on $\mathcal{H}$. Operator $\hat{A}$ is called an \textbf{observable}. A measurement of $A$ returns an eigenvalue of $\hat{A}$. (Hermiticity of $\hat{A}$ assumed to ensure real eigenvalues.)
+\item PB in CM are replaced by the \textbf{commutator} multiplied by $\sfrac{-i}{\hbar}$ in QM. (Unit in which $\hbar=1$ assumed from now on.)
+\begin{equation}
+[\hat{A},\hat{B}]\equiv\hat{A}\hat{B}-\hat{B}\hat{A}
+\label{commutator}
+\end{equation}
+The fundamental commutators analogous to the fundamental PB's are
+\begin{equation}
+[\hat{q}_i,\hat{q}_j]=[\hat{p}_i,\hat{p}_j]=0~~~~[\hat{q}_i, \hat{p}_j]=i\delta_{i,j}
+\label{eq: fundcom}
+\end{equation}
+and Hamilton's equation of motion become
+\begin{equation}
+\frac{\mathrm{d}\hat{q}_i}{\mathrm{d}t}=\frac{1}{i}[\hat{q}_i,\hat{H}]~~~~\frac{\mathrm{d}\hat{p}_i}{\mathrm{d}t}=\frac{1}{i}[\hat{p}_i,\hat{H}]
+\label{eq: HamEqns}
+\end{equation}
+When a classical quantity $A$ is independent of $t$ explicitly, it satisfies the same equation as Hamilton's. Analogously, time-independent $\hat{A}$ satifies \textbf{Heisenberg's equation of motion}
+\begin{equation}
+\frac{\mathrm{d}\hat{A}}{\mathrm{d}t}=\frac{1}{i}[\hat{A}, \hat{H}]
+\label{eq: HeisenbergEqnofMotion}
+\end{equation}
+\item Let $|\psi\rangle\in\mathcal{H}$ be an arbitrary state. For many systems in this state, the observation of $A$ at time $t$ returns random results in general. The expectation value of the results is given by 
+\begin{equation}
+\langle A\rangle_t=\frac{\langle\psi|\hat{A}(t)|\psi\rangle}{\langle\psi|\psi\rangle}
+\end{equation}
+\item For any physical observable $|\psi\rangle\in\mathcal{H}$, there exists an operator such that $|\psi\rangle$ is one of its eigenstates.
+\end{enumerate}
+\hrulefill
+To continue we will examine the 5th axiom. Assuming $|\psi\rangle$ is normalised, suppose $\hat{A}(t)$ has a set of eigenvalues $\lbrace a_n\rbrace$ and corresponding normalised eigenvectors $\lbrace |n\rangle\rbrace$\footnote{Set of eigenvectors can be chosen to be orthonormal due to the hermiticity of $\hat{A}(t)$}, then
+\begin{equation}
+\hat{A}(t)|n\rangle = a_n|n\rangle ~~~~ \langle n|n\rangle=1
+\end{equation}
+Since the eigenvectors are orthonormal, we choose it as the basis and can write arbitrary state $|\psi\rangle$ as
+\begin{equation}
+|\psi\rangle =\sum_n\psi_n|n\rangle~~~~\psi_n=\langle n|\psi\rangle
+\end{equation}
+and the expectation value $\hat{A}(t)$ w.r.t. to $|\psi\rangle $ is
+\begin{equation}
+\langle \psi|\hat{A}(t)|\psi\rangle=\sum_{m,n}\psi^*_m\psi_n\langle m|\hat{A}(t)|n\rangle=\sum_n |\psi |^2a_n
+\end{equation}
+It follows from the fact that the measurement of $A$ in state $|n\rangle$ is always $a_n$ that the probability of the outcome being $a_n$, ie. that $|\psi \rangle$ is in $|n\rangle$, is
+\begin{equation}
+|\psi|^2=|\langle n|\psi\rangle|^2
+\end{equation}
+here the number $\langle n|\psi\rangle$, the weight of state $|n\rangle$ in the state $|\psi\rangle$, is called the \textbf{probability amplitude}.\\
+\indent For observable $\hat{A}$ with a continuous spectrum $a$, the state $|\psi\rangle$ is expanded to
+\begin{equation}
+|\psi\rangle=\int \mathrm{d}a~\psi(a)|a\rangle
+\label{eq: continuousket}
+\end{equation}
+and the completeness relation becomes
+\begin{equation}
+\int \mathrm{d}a~|a\rangle\langle a |=I
+\end{equation}
+Employing the identity returns $\int \mathrm{d}a'~|a'\rangle\langle a' |a\rangle=|a\rangle$, which implies the normalisation
+\begin{equation}
+\langle a'| a \rangle=\delta(a'-a)
+\end{equation}
+the expansion coefficient $\psi(a)$ from Eq.\ref{eq: continuousket} is obtained from this normalisation condition as $\psi(a)=\langle a | \psi \rangle$. Since $|\psi\rangle $ is normalised,
+\begin{equation}
+1=\int \mathrm{d}a\mathrm{d}a'\psi^*(a)\psi(a')\langle a | a'\rangle=\int \mathrm{d}a|\psi(a)|^2
+\end{equation}
+It follows from Eq.~\ref{eq: continuousket} that the expectation value can be defined
+\begin{equation}
+\langle\psi|\hat{A}|\psi\rangle = \int a |\psi(a)|^2\mathrm{d}a
+\end{equation}
+\section{References}
+\enumerate
+\end{document}

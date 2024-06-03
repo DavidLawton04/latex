@@ -1,0 +1,26 @@
+\documentclass[11pt,oneside,a4paper]{article}
+\usepackage{geometry}
+\usepackage{mathtools}
+\usepackage{xfrac}
+
+\begin{document}
+\title{Group Theory Homework 2}
+\author{David Lawton}
+\date{30 Sep. 2023}
+\maketitle
+\vfill
+\tableofcontents
+\clearpage
+
+\section{Problem 1}
+Let $\mathrm{G} \times \mathrm{X} \rightarrow \mathrm{X} $ be a group action and let $s \hspace{1mm} \epsilon \hspace{1mm} \mathrm{X}$. Show that the stabilizer of the element $s$, $$ \mathrm{G}_s := \{ g \hspace{1mm} \epsilon \hspace{1mm} \mathrm{G} \hspace{1mm} | \hspace{1mm} g \cdot s = s \} $$ is a subgroup of G. \vspace{10pt} \\
+\noindent $ \mathrm{G}_s $ is by definition a subset of G. \vspace{5pt} \\
+\indent (1) $ \mathrm{G}_s $ must be non-empty:
+$$\exists \hspace{1mm} e \hspace{1mm} \epsilon \hspace{1mm} \mathrm{G}_s \hspace{1mm}  \mathrm{such \hspace{1mm} that} \hspace{2mm} e \cdot s = s$$  \indent \indent This is true by the defintion of G above. \vspace{4pt} \\
+\indent (2) $ \mathrm{G}_s $ must have closure: $ \forall \hspace{1mm} a, b \hspace{1mm} \epsilon \hspace{1mm}  \mathrm{G}_s \mathrm{,} \hspace{1mm}   \left( a \circ b \right)  \hspace{1mm}  \epsilon \hspace{1mm}  \mathrm{G}_s  $ 
+$$ g, \hspace{1mm} h \hspace{1mm} \epsilon \hspace{1mm} \mathrm{G}_s \hspace{1mm} \rightarrow \hspace{1mm} g   \cdot s = s , \hspace{1mm} h \cdot s = s $$ 
+$$ g \cdot \left( h \cdot s \right) = s \hspace{2mm}\Rightarrow \hspace{1mm} \left( g \circ h \right) s = s$$
+$$\Rightarrow \hspace{2mm} \left(g \circ h \right) \hspace{1mm} \epsilon \hspace{1mm} \mathrm{G}_s $$
+\indent (3) $ \mathrm{G}_s $ must contain the inverse of all of its elements: $\forall \hspace{1mm} a \hspace{1mm}\epsilon \hspace{1mm} \mathrm{G}_s \hspace{1mm} \exists \hspace{1mm} b \hspace{1mm} \epsilon \mathrm{G}_s \hspace{1mm} \mathrm{such \hspace{1mm} that} \hspace{1mm} a \cdot b~=~e$
+
+\end{document}

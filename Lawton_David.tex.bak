@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+\hypersetup{
+  colorlinks   = true,    % Colours links instead of ugly boxes
+  urlcolor     = blue,    % Colour for external hyperlinks
+  linkcolor    = blue,    % Colour of internal links
+  citecolor    = red      % Colour of citations
+}
+
+\title{Curriculum Vitae, Cover Letter and Transcript.}
+\author{David Lawton}
+\date{13th Jan. 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{CV}
+\subsection{Personal Details:}
+Address: 39 Landscape Park, Churchtown, Dublin 14. D14 A304.\\
+Contact Number: +353 83 834 4417\\
+Contact Email: lawtond@tcd.ie\\
+
+\subsection{Education:}
+\begin{itemize}
+\item 2008 - 2016: Scoil Barra Naofa, Beaumont.
+\item 2016 - 2022: St Francis College, Rochestown. LC 2022, 625 points.
+\item 2022 - Present: Trinity College Dublin, BA Theoretical Physics. Summer 2023 Grade - 1.
+\end{itemize}
+\subsection{Work Experience:}
+\begin{itemize}
+\item June 2022 – August 2022: Maryborough Hotel and Spa, kitchen porter. 
+\item August 2023 – Present: Fota Island Resort, food and beverage assistant.
+\end{itemize}
+My experience in the hospitality industry really improved my ability to work as part of a collaborative effort, as well as the ability to take initiative myself.
+\subsection{Awards/Acknowledgements:}
+\begin{itemize}
+\item Fundraised for HOPE during secondary school.
+\item Completed YMP at KOEC.
+\item Achieved Bronze Gaisce Award.
+\item Earned maximum points in LC 2022, including H1's in Maths, Physics, Applied Maths, Chemistry and Biology.
+\item Received Exhibition Scholarship from TCD.
+\end{itemize}
+\subsection{Skills}
+\begin{itemize}
+\item Word/Excel proficiency.
+\item Basic maths/physics computation skills in Python.
+\item Mathematica.
+\item Latex proficiency.
+\item OriginLab proficiency. 
+\end{itemize}
+I have gained most of these skills over the past two years of my course. My previous Python Code can be seen at \url{https://github.com/DavidLawton04/VSCode}
+\subsection{Referees:}
+\begin{itemize}
+\item Prof. Chaolun Wu - Teaching Fellow at TCD School of Maths.
+\end{itemize}
+
+\section{Transcript}
+\textbf{1st Year}\\
+\vspace{0.2cm}\\
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+Module Code & Module Name & Credits & Mark & Grade \\ 
+\hline 
+ MAU11100 & LINEAR ALGEBRA & 10 & 82 & I \\ 
+\hline 
+MAU11201 & SINGLE VARIABLE CALCULUS AND INTRODUCTORY ANALYSIS & 10 & 76 & I \\ 
+\hline 
+MAU11202 & ADVANCED CALCULUS & 5 & 61 & II-1 \\ 
+\hline 
+MAU11400 & MECHANICS & 10 & 62 & II-1 \\ 
+\hline 
+MAU11404 & TECHNIQUES IN THEORETICAL PHYSICS & 5 & 74 & I \\ 
+\hline 
+PYU11T10 & PHYSICS FOR THEORETICAL PHYSICS & 10 & 66 & II-1 \\ 
+\hline 
+PYU11T20 & PHYSICS FOR THEORETICAL PHYSICS & 10 & 64 & II-1 \\ 
+\hline  
+\end{tabular} 
+\vspace{0.5cm}\\
+\textbf{2nd Year} (\textit{Results Not Published})\\
+\vspace{0.2cm}\\
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+Module Code & Module Name & Credits & Mark & Grade \\ 
+\hline 
+ MAU23401 & ADVANCED CLASSICAL MECHANICS I & 5 & - & - \\ 
+\hline 
+MAU23402 & ADVANCED CLASSICAL MECHANICS II & 5 & - & - \\
+\hline
+MAU22101 & ABSTRACT ALGEBRA I: GROUP THEORY & 5 & - & - \\ 
+\hline 
+MAU23204 & INTRODUCTION TO COMPLEX ANALYSIS & 5 & - & - \\
+\hline
+MAU23302 & EUCLIDEAN AND NON-EUCLIDEAN GEOMETRY & 5 & - & - \\
+\hline
+MAU23403 & 	
+EQUATIONS OF MATHEMATICAL PHYSICS I & 5 & - & - \\ 
+\hline 
+PYU22T10 & PHYSICS FOR THEORETICAL PHYSICS & 10 & - & - \\ 
+\hline
+PYU22T20 & PHYSICS FOR THEORETICAL PHYSICS & 10 & - & - \\
+\hline
+TEU00382 & ANCIENT CULTURE LAB: HOMER'S EXPERIENCE AND THE ... & 5 & - & - \\ 
+\hline
+TEU00531 & DEFENSE FROM THE DARK ARTS & 5 & - & - \\ 
+\hline 
+\end{tabular} 
+\end{document}

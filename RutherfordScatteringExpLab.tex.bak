@@ -1,0 +1,160 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{mathalpha}
+\usepackage{tikz}
+\usepackage{cite}
+
+\title{Rutherford Scattering}
+\author{SF Theoretical Physics Lab Report\\David Lawton\\22337087\\Lab Partner: Jack Price}
+\date{21st March 2024}
+
+\begin{document}
+
+\maketitle
+\vfill
+\tableofcontents
+
+\newpage
+\section{Abstract}
+The experiment aimed to investigate the structure of the atom, particularly the distribution of positive charge within the atom and the nature of the atom's structure. We established the basis for and the theory of scattering of charged particles under a Coulomb potential. We then verified the expected distribution of count rate with respect to angle, while disproving the previous theory.\\
+\indent The core difference between the two scattering theories is the amount of deflection one $\alpha$-particle can undergo in one scattering event
+
+\section{Introduction}
+This laboratory concerns the scattering of $\alpha$-particle (He nuclei) by a gold foil. Ernest Rutherford's original experiment proved the previously accepted `plum pudding' model, proposed by J. J. Thompson.
+\subsection{Previous Theory}
+J. J. Thompson's `plum pudding' model was a model of the atom in which the atom was a sphere of positively charged mass, with small negatively charged particles dotted around inside [1].
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{/home/dj-lawton/Documents/Tikz/PlumPuddingModel.pdf}
+\caption{\label{fig: plumpudding} Thompson's plum pudding model of the atom, note that the total charge of the positively charged sphere is equal to the total charge of the negatively charged particles inside it.}
+\end{center}
+\end{figure}
+Before being disproven, Thomson's model was the predominantly accepted model of the atom. While it changed somewhat in the years previous to the gold foil experiment, the basis remained the same. The expected result of the gold foil experiment, by Thomson's model was that the particles would pass through the foil, with some small deflections, but none scattered to very large angles. On seeing this contradiction of the accepted model, Rutherford later said “It was almost as incredible as if you fired a 15-inch shell at a piece of tissue paper and it came back and hit you.” The gold foil experiment, as we know it, was performed by Hans Geiger and Ernest Marsden at the University of Manchester in 1913, although this was after a series of experiments over about five years, during which Rutherford formulated his theory of scattering and his model of the atom.
+\subsection{Rutherford Scattering}
+Rutherford scattering, or Coulomb scattering, is the theory of scattering between charged particles. It is a specific case of general central potential scattering. From the Keplerian case for a central potential, a Coulombic potential can be substituted,
+\begin{equation}
+\frac{\mathrm{d^2}(r^{-1})}{\mathrm{d}\theta^2} + r^{-1} = -\frac{zZe^2}{4\pi^2\epsilon_0mu^2b^2},
+\end{equation}
+where $z$ is the atomic number of the incident particle, $Z $ is the atomic number of the particle of which the nucleus is part of, $u$ is the initial velocity, $e$ is the charge of the electron and $b$ is the impact parameter. The impact parameter is defined as being the distance between the asymptote approached in the initial motion and the parallel radial line from the scatterer.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{/home/dj-lawton/Documents/Tikz/RuthScattering.pdf}
+\caption{\label{fig: RuthScat} Illustration of scattering of an $\alpha$-particle by a Au nucleus. Notice the impact parameter $b$, the parallel offset of initial trajectory from the radial line from the Au nucleus.}
+\end{center}
+\end{figure}
+This ordinary differential equation has the general solution 
+\begin{equation}
+\frac{1}{r} = \frac{1}{r_{\text{min}}}\cdot\mathrm{cos}(\theta-\theta_{\text{min}}) - \frac{zZe^2}{4\pi^2\epsilon_0mu^2b^2},
+\end{equation}
+where the `min' subscript denotes `at the apse of the hyperbola', and theta is the change in angle from the original asymptote.\\
+\indent After some calculations, an important relation is reached, regarding impact parameter, $b$.
+\begin{equation}
+b = \frac{zZe^2}{4\pi^2\epsilon_0mu^2}\cdot\mathrm{cot}\left(\frac{\theta_{max}}{2}\right)
+\end{equation}
+From the definition of the differential cross section it can be deduced that that it depends, in this scenario, on $b$ and $\theta_{max}$:
+\begin{equation}
+\frac{\mathrm{d}\sigma}{\mathrm{d}\Omega}=\frac{b}{\mathrm{sin}(\theta_{max})}\bigg | \frac{\mathrm{d}\sigma}{\mathrm{d}\theta_{max}}\bigg |
+\end{equation}
+This dictates the distribution of the scattering, and the count rate, $R$, can be shown to be
+\begin{equation}
+R \propto  N\cdot\left( \frac{zZ}{E}\right)^2\cdot\mathrm{cosec}^4\left(\frac{\theta}{2}\right)
+\end{equation}
+where $N$ is the number of scattering centres in the foil per unit area perpendicular to the $\alpha$-ray beam. Of course this isn't totally accurate for small angles because $R\rightarrow\infty$ as $\theta\rightarrow0$.
+\subsection{Linear Relationship}
+There exists from the previous equation a way of finding $c\cdot N$, where
+\begin{equation}
+R=c\cdot N\cdot\left( \frac{zZ}{E}\right)^2\cdot\mathrm{cosec}^4\left(\frac{\theta}{2}\right)
+\label{eq: cosec}
+\end{equation} 
+taking the logarithm to the base 10 results in the relation
+\begin{equation}
+\mathrm{log}_{10}R=\mathrm{log}_{10}\left(c\cdot N \cdot \left( \frac{zZ}{E}\right)^2\right)+\mathrm{log}_{10}\left(\mathrm{cosec}^4\left(\frac{\theta}{2}\right)\right)
+\label{eq: log}
+\end{equation}
+this in turn means that when graphing $\mathrm{log}_{10}R$ against the $\theta$ term above, there should be a slope of 1, with the intercept giving the logarithm of the constants.
+\subsection{Dimensional Analysis}
+Through some dimensional analysis, it can be established that the constant `$c$', in Eq.~\ref{eq: cosec}, must be of the dimension $eV^{-2}s^{-1}$.
+\begin{equation}\label{eq: dimanal}
+s^{-1} = \mathrm{dim}~c\cdot \left[\frac{1}{eV^2}\right]~\rightarrow~\mathrm{dim}~c= \frac{1`}{eV^2s}
+\end{equation}
+\section{Methodology}
+\subsection{Set-up and Procedure}
+The procedure for this experiment began by placing an $\alpha$-particle source, $^{241}_{95}$Am, and a gold foil with a collimating slit on a swivel arm, where the gold foil is centrally mounted and the source lies on the end of the arm. This whole apparatus is attached to the lid of the vacuum chamber and placed in it. The arm is turned from a knob on the top of the lid, where the reading of the angle is also taken.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{/home/dj-lawton/Documents/Tikz/RuthScatEquip.pdf}
+\end{center}
+\end{figure}
+The first step to generating the vacuum in the chamber is to open the valve on the pipe attached to the pump. The lid is placed on securely and the pump is turned on. Once a pressure of about 1 mbar is read on the pressure gauge, the experiment is begun. The pump was left on during the experiment to retain a sufficient vacuum. An oscilloscope was used to adjust the range of voltage being monitored, and the required disturbance to that voltage for a count.\\
+\indent We took samples at positive and negative angles up to 50 degrees. Using a timer, we set one minute intervals of counting at the smaller angles of 0, $\pm5$, and $\pm10$ degrees. for all other angles, we counted around ten scintillations, while noting the time taken. A 1 mm collimating slit was used for the counts up to $\pm30$ degrees. These last two were then repeated with a 5 mm collimating slit instead, so that the readings could be adjusted to account for the wider slit. This was then continued up to $\pm50$ degrees.\\
+\indent The 1 mm slit is important in the procedure for small angles as it limits extra counts from $ alpha$-particles who's paths are not perpendicular to the foil (Fig.~\ref{fig: Slit})
+. Ideally, for the sake of accuracy, this slit would be as small as possible, however this would pose the problem of extremely long count periods. The 5 mm slit is substituted at larger angles, as the 1 mm does not allow a sufficient number of particles through for practical experimentation. We make the assumption that the factor by which the number of counts increases is constant and does not depend on angle, which it may.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{/home/dj-lawton/Documents/Tikz/SlitIllustration.pdf}
+\caption{\label{fig: Slit}Geometric illustration of the need for a small slit. It is clearly visible that a smaller slit would result in more accurate results.}
+\end{center}
+\end{figure}
+\subsection{Error}
+Possible sources of error we considered were in the resolution of the angular measurement, sample error and instrumental error in the gold foil not being perpendicular to the incident beam. Also notable was some instrumental error that might result from leaving the vacuum pump on, as the increased directionality of the flow of air may cause the scattering to be skewed. However, this would be less than that resulting from freely increasing air pressure, which would also be more random and less quantifiable. We did not take this error into account in our calculations. Another source which we did not account for was that coming from the non-negligible collimating slit width. However, it seems reasonable to assume that the increase in count caused by this would be effectively proportional and wouldn't significantly alter results. The formula used to propagate the error is below.
+\begin{equation}
+\Delta f(\lbrace x_i\rbrace_{i=1,2,...}) = \sqrt{\sum_i\left[\left(\frac{\partial f}{\partial x_i}\right)^2(\Delta x_i)^2\right]}
+\end{equation}
+\section{Results}
+Our first result was the verification that the count rate agrees with the $cosec^4(\theta)$ relation to angle, for non-negligible angles. The function was fitted with a fixed $\alpha$-particle energy of 5.48 MeV. \\
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/AutoFitRCosec.jpg}
+\caption{\label{fig:autofit} Fitted function verifying the expected relationship between $R$ and $\theta$ and establishing the constant value $c\cdot N$ and the angular offset.}
+\end{center}
+\end{figure}
+As visible above, this returns a value of $c\cdot N = (7.989\pm1.076)\cdot 10^-34$ and an angular offset of $0.43^{\circ}$. When fitting, the $0^{\circ}$ term was masked, as it is not possible to fit the infinitely valued function at $0^{\circ}$ to the finite value collected.\\
+\newpage
+As well as the automatic fit, I performed a manual fit of the function, and extended the range of angles, while displaying the rate on a logarithmic scale. This shows that $c\cdot N$ is of the order $10^-5$, and as expected the rate is never zero.\\
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/ManualFitLogRCosec.jpg}
+\caption{\label{fig: manual} A manually fitted extension of figure~\ref{fig:autofit}}
+\end{center}
+\end{figure}
+\newpage
+Finally, I performed a linear fit on the $\mathrm{log_{10}}R$ vs $\mathrm{log_{10}(\mathrm{cosec}^4(\frac{\theta}{2}}))$
+\begin{figure}[H]
+\begin{flushleft}
+\includegraphics[width=\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/logRlogcosec.jpg}
+\caption{\label{fig: log}Linear fit established in Eq.~\ref{eq: log}, outliers masked to improve accuracy.}
+\end{flushleft}
+\end{figure}
+As expected a slope of approximately 1 emerges, with an intercept of $-5.243\pm0.173$. This value agrees with the expected scale established with the manual non-linear fit of the data. Once again small angles were masked, this time the angular offset found earlier was taken into account.
+\section{Conclusion}
+To conclude, we verified the expected result of Rutherford Scattering, showing that the relationship shown in Eq.~\ref{eq: cosec} to be true. We did this in two different fashions, first by fitting the data with the non-linear curve expected, and then by fitting the data linearly as established in Eq.~\ref{eq: log}.\\
+\indent The angular offset given by figure~\ref{fig:autofit}, I would attribute to a combination of the gold foil not being perpendicular to the ray of incident particles and the vacuum pump remaining on for the duration of the experiment.\\
+\indent I would also mention that figure~\ref{fig: manual} contradicts completely the incorrect expectation of the `Plum Pudding Model'. This verifies that Thomson's original theory is incorrect in its small angle assumptions, given that the count rate at large angles is non-zero, and certainly non-negligible with respect to the small angle count rates.\\
+\indent However, the small angle results would suggest some inconsistencies in the assumptions made in the theory, although that's likely predictable as the finite count rate could never result in the predicted.
+\indent Additionally, from Eq.~\ref{eq: dimanal}, one can suggest possible quantities in the constant $c$. For example, given the dimension, I would suggest that $\frac{1}{J}$ may be in the constant, where $J$ denotes the angular momentum. I expect quantities like $e$, $\epsilon_0$, and $b$ to be present also.
+\section{References}
+\begin{enumerate}
+\item Thomson, J.J. F.R.S. (1904) XXIV. On the structure of the atom: an
+investigation of the stability and periods of oscillation of a number of corpuscles arranged at equal
+intervals around the circumference of a circle; with application of the results to the theory of atomic
+structure , Philosophical Magazine Series 6, 7:39, 237-265, DOI: 
+10.1080/14786440409463107
+\item Britannica, T. Editors of Encyclopaedia (2024, January 3). Rutherford model. Encyclopedia Britannica. \url{{https://www.britannica.com/science/Rutherford-model}}
+\item SF Physics Laboratory Manual. Trinity College Dublin, School of Physics
+\item Rutherford, Ernest (1911). The Scattering of the Alpha and Beta Rays and the Structure of the Atom. Proceedings of the Manchester Literary and Philosophical Soc IV, 55 18-20
+\item Winberg, M. R., Garcia, R. S. (September 1995). National Low-Level Waste Management Program Radionuclide Report Series Vol.14: Americium-241. International Atomic Energy Agency.
+\end{enumerate}
+\section{Appendix}
+No additional graphs.
+Data here at \url{https://github.com/DavidLawton04/LabData}
+
+\end{document}

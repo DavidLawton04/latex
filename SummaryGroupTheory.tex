@@ -1,0 +1,588 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{amsmath, amssymb}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{mathalpha}
+\usepackage{tikz}
+\usepackage{cite}
+
+\title{Introduction to Group Theory}
+\author{Based on the lectures of Florian Naef\\David Lawton\\22337087}
+\date{20th May 2024.}
+
+\begin{document}
+
+\maketitle
+\vfill
+\tableofcontents
+
+\newpage
+
+\section{Lecture 1: Definitions \& Examples}
+\textbf{Def. 1.1:} A \textbf{group} is pair $(G,m)$ such that $G$ is a \textbf{set} and $m: G\times G \rightarrow G$ is a mapping from $G$ to itself s.t.
+\begin{itemize}
+\item $G$ is associative under $m$, ie. $m(a,(b,c))=m((a,b),c) ~\forall ~a,b,c\in G$.
+\item $G$ has a unit, ie. $\exists ~e\in G$ s.t. $ m(e,g)=m(g,e)=g~\forall ~ g\in G$.
+\item Each element of $G$ has an inverse, ie. $\forall~a\in G, \exists ~b\in G$ s.t. $ m(a,b)=m(b,a)=e$.
+\end{itemize}
+\hrule
+\vspace{3mm}
+\textbf{Remark:} \\
+We usually write $m(a,b)$ as $a*b$, $ a\cdot b$, or $ab$. Associativity becomes $a(bc)=(ab)c$. \\ We also write the inverse of element $a$ as $a^{-1}$. \\ The notation $(G,m) $ is rewritten simply as $G$ for convenience.
+\vspace{2mm}~\\
+\textbf{Examples:}
+\begin{enumerate}
+\item $G=\lbrace e\rbrace$ (Trivial group)
+\item $(\mathbb{Z}, +)$, $e=0$, $a^{-1}=-a$ (Integers under addition)
+\item $(\mathbb{Q}, +)$ (Rational numbers under addition)\footnote{For any field $F$, $(F,+)$ and $(F\setminus\lbrace 0\rbrace, *)$ are groups.}
+\item $(\mathbb{Q}^x=\mathbb{Q}\setminus \lbrace 0\rbrace, *)$, $e=1$, $a^{-1}=\frac{1}{a}$
+\item $GL(n,\mathbb{R})= \lbrace n\times n \text{ matrix } A \text{ with entries in } \mathbb{R}|\det A \neq 0 \rbrace$, $e = \mathbb{I}$, $A^{-1}=A^{-1}$ (General linear group)
+\item $S(X)=\lbrace f:X\times X \rightarrow X | f \text{ bijective}\rbrace$ , $ e=Id_X$, $f^{-1}=f^{-1}$ 
+\end{enumerate}
+
+\hrule
+\vspace{3mm}~\\
+\textbf{Def. 1.2:} A group is \textbf{abelian} if all elements of the set are commutative under the mapping, ie. for group $G=(G,m)$, $ab=ba~\forall~a,b\in G$.\footnote{1, 2, 3 abelian. 4, 5 generally non-abelian ($n\geq 2$ in 4, $|X| \geq 3$ in 5.)} Note: $a*b$ often written as $a+b$ for abelian groups.\\
+\textbf{Prop. 1.1:} 
+\begin{enumerate}
+\item The unit is unique
+\item For each $a\in G$, $a^{-1}$ is uniquely determined.
+\item $(a^{-1})^{-1}=a$
+\item $(ab)^{-1}=b^{-1}a^{-1}$
+\item For any $a_1, ..., a_n$, the value of $a_1\cdot ... \cdot a_n$ is independent of bracketing.
+\end{enumerate}
+\textbf{Pf.}
+\begin{enumerate}
+\item Suppose $e, e\prime$ are both units of group $G$. Then $e=e' e = e'$. $\square$
+\item Given $a \in G$, suppose $\exists~ b_1,b_2 \in G$ s.t. they both satisfy the conditions of the inverse of $a$. Then $b_1=b_1 e = b_1(ab_2)=(b_1a)b_2=eb_2=b_2$. $\square$
+\item Let $b=(a^{-1})^{-1}$, therefore $ba^{-1}=e=a^{-1} b$. $a$ satisfies this, and since the inverse is uniquely determined, $a=b=(a^{-1})^{-1}$.
+\item $ ab(b^{-1}a^{-1})=a(bb^{-1})a^{-1}=aa^{-1}=e$. Similar for $(b^{-1}a^{-1})ab$. Therefore $b^{-1}a^{-1} $ satisfies the conditions of the inverse of $ab$, and is therefore equal to $(ab)^{-1}$ since the inverse is uniquely determined. 
+\item Proof by induction. Let $f(a_1,...,a_n)$ be a bracketing of $a_1,...,a_n$. Define $f(a_1,...,a_n)=(a_1(...(a_{n-1}a_n)...)):=m_n(a_1,...,a_n)$.
+\vspace{2mm}\\
+Induction on $n$:\\ $n=1,2$: $m(a_1)=a_1,~~m_2(a_1,a_2)=m(a_1,a_2)$.\\$n\geq 3$: $f=m(f_1(a_1,...,a_k),f_2(a_{k+1},...,a_n))$.\\
+By ind. hyp. $f_1=m_k$, $f_2=m_{n-k}$.\\
+It remains to show that $m(m_k,m_{n-k})=m_n~\forall~ k$.
+
+\begin{align*}
+k=1:& m(a_1,m_{n-1}(a_2,...,a_n))=m_n(a_1,...,a_n).\\
+k > 1:& m(m_k(a_1,...,a_k),m_{n-k}(a_{k+1},...,a_n))=m(m(a_1,m_{k-1}(a_2,...,a_k)),m_{n-k}(a_{k+1},...,a_n)).\\ =&m(a_1,m(m_{k-1}(a_2,...,a_k),m_{n-k}(a_{k+1},...,a_n))) \text{ by associativity.}\\
+=&m(a_1,m_{n-1}(a_2,...,a_n))=m_n(a_1,...,a_n)
+\end{align*}
+\end{enumerate}
+\vspace{3mm}~\\
+\hrule
+\vspace{3mm}~\\
+\textbf{Remark:}\\
+Either of left or right inverse, uniquely characterise $a^{-1}$.
+\vspace{2mm}~\\
+\hrule
+\vspace{3mm}~\\
+\textbf{Prop 1.2:} Left and right cancellation hold in any group.
+\begin{align}
+ax&=ay\therefore x=y\\
+xa&=ya\therefore x=y
+\end{align}
+\textbf{Pf.}: Multiply by $a^{-1}$ from left, right respectively.
+\vspace{3mm}~\\
+\hrule
+\vspace{3mm}~\\
+\textbf{Remark:}\\
+Let  $(G, m),~m:G\times G \rightarrow G$ satisfy:
+\begin{itemize}
+\item $m(a, m(b,c))=m(m(a,b),c)$ (Associativity)
+\item $\exists~e\in G$ s.t. $m(e,g)=g,~\forall~g\in G$. (Left-unit)
+\item $\forall ~ a \in G,~\exists~b\in G$ s.t. $m(b,a)=e$. (Left-inverse)
+\end{itemize}
+then $(G,m)$ is a group.\\
+\vspace{2mm}~\\
+\textbf{Notation:}\\
+\begin{align}
+x^n=&x\cdot (x, ~ n-2 \text{ times}) \cdot x,~x^{-n}=x^{-1}\cdot (x^{-1}, ~ n-2 \text{ times}) \cdot x^{-1}\\
+n\cdot x=&x+x+x+...+x,~-n\cdot x = (-x)+(-x)+(-x)+...+(-x) \text{ (For abelian)}
+\end{align}
+\vspace{3mm}~\\
+\hrule
+\vspace{3mm}~\\
+\newpage
+~\\
+\textbf{Def. 1.3:} The \textbf{order} of $x\in G$ is the smallest $n\in \mathbb{Z}^+$ s.t. $x^n=e$. The order is denoted $|x|= n$.
+\vspace{2mm}~\\
+\textbf{Example:}
+\begin{itemize}
+\item $G=\mathbb{C}^{\times}, x=i, |x|=4.$
+\item $G=\mathrm{GL}(2,\mathbb{R}), x=\begin{pmatrix}0&-1\\1&1\\\end{pmatrix}, |x|=6$
+\end{itemize}
+\newpage
+\section{Lecture 2: Integers Modulo n and the Quaternion Group}
+\subsection{Integers Modulo n: $\mathbb{Z}/n\mathbb{Z}$}
+\textbf{Def. 2.1.1:} Let $a,b\in \mathbb{Z}$. We say $a,b$ have the same residue mod $n$, and write $a\equiv b~(\text{mod n})$ if $\exists~k\in \mathbb{Z}$ s.t. $a-b=k\cdot n$.\\
+
+Given $a\in \mathbb{Z}$ denote by 
+\begin{align*}
+\bar{a}&=\lbrace b\in \mathbb{Z}|b\equiv a~ (\text{mod n})\rbrace	\\
+&=\lbrace a + kn \in \mathbb{Z}| k\in \mathbb{Z}\rbrace \subseteq \mathbb{Z}
+\end{align*}
+and define 
+\begin{equation}
+\mathbb{Z}/n\mathbb{Z}=\lbrace \bar{a} \subseteq \mathbb{Z}|a\in \mathbb{Z}\rbrace
+\end{equation}
+\vspace{2mm}~\\
+\textbf{Lemma 2.1.1:}
+\begin{itemize}
+\item $a\equiv b ~(\text{mod n}) ~\Leftrightarrow ~\bar{a}=\bar{b}$
+\item $\mathbb{Z}/n\mathbb{Z} = \lbrace\bar{0}, \bar{1}, \bar{2}, ..., \overline{n-1}\rbrace $
+\end{itemize}
+\textbf{Pf.}:
+\begin{align*}
+a\equiv b~(\text{mod n})~&\Rightarrow ~ a= b + k\cdot n\\
+&\Rightarrow ~ b = a - k\cdot n = a + l\cdot n ,~ l\in \mathbb{Z}\\
+&\Rightarrow ~ b=a~(\text{mod n})
+\end{align*}
+\begin{align*}
+\mathbb{Z}/n\mathbb{Z}=\lbrace \bar{a}\subseteq \mathbb{Z}|a\in \mathbb{Z}\rbrace,~ \bar{a}&=\lbrace a + kn \in \mathbb{Z}| k\in \mathbb{Z}\rbrace\\
+\Rightarrow ~\forall~a<n, ~ \bar{a} &=\lbrace a + kn \in \mathbb{Z}| k\in \mathbb{Z}\rbrace,\\ \forall ~ a\geq n,~\bar{a}&=\lbrace n+b +kn\in \mathbb{Z}|k\in\mathbb{Z}, a=n+b\rbrace\\
+&=\lbrace b+(k+1)n|k\in\mathbb{Z}\rbrace=\bar{b}
+\end{align*}
+\begin{align*}
+\Rightarrow ~ \forall ~ a\geq n, ~ \bar{a}&=\overline{a-n}\\
+\Rightarrow  ~ \mathbb{Z}/n\mathbb{Z}&=\lbrace \bar{a}\subseteq \mathbb{Z}|a\in \mathbb{Z}, ~ a<n\rbrace=\lbrace \bar{0}, \bar{1}, ..., \overline{n-1}\rbrace
+\end{align*}
+\begin{flushright}
+$\square$
+\end{flushright} 
+\textbf{Prop. 2.1.1:}\\
+The assignment $m(\bar{a},\bar{b})=\overline{a+b}$ is well defined, and $(\mathbb{Z}/n\mathbb{Z},m) $ is an abelian group.\\
+\textbf{Pf.:}\\
+Let $\bar{a_1}=\bar{a_2},~\bar{b_1}=\bar{b_2}$, this implies that $a_1\equiv a_2 $ (mod n), $b_1\equiv b_2$ (mod n). It is then necessary that $a_1+b_1=a_2+b_2$ (mod n). Thus $\overline{a_1+b_1}=\overline{a_2+b_2}$, and so $m$ is well defined.\\
+\indent It remains to show that $(\mathbb{Z}/n\mathbb{Z},m)$ is a group. Therefore we must show that it is associative, and contains a left-unit, and left-inverse.\\
+\indent Let $G=(\mathbb{Z}/n\mathbb{Z},m)$. For $a,b,c\in G$,
+\begin{align*}
+m(a,b)=a+b, ~m(b,c)=&b+c\\
+\Rightarrow m(a,m(b,c))=&a+b+c=m(m(a,b),c),
+\end{align*}
+ therefore $G$ is associative. \\ \indent To show the existence of the left-unit, we must show there exists $e\in G$ s.t. $e+g=g~\forall~g\in G$. For $m(\bar{a},\bar{b})=\overline{a+b}=\bar{b}$, where $\bar{a},\bar{b}\in G$, it is clear from this that $a=k\cdot n$ for some $k\in \mathbb{Z}$. Therefore $a=0$ (mod n). This implies that $\bar{a}=\bar{0}$. Therefore $\bar{0}$ is the left-unit of $G$ (and consequently right-unit as abelian).\\
+ \indent To show the existence of the left-inverse, we must show that $\forall~a\in G, ~\exists ~ b\in G$ s.t. $m(a,b)=e$. If $m(\bar{a}',\bar{b}')=\bar{0}$, then $a'=-b'$ (mod n). Therefore, $a'=n-b'$ (mod n), which implies that $\bar{a}=\overline{n-b}'$. Hence, $\forall~\bar{g}\in G, ~\bar{g}^{-1}=\overline{n-g}$.\\
+ \indent $G=(\mathbb{Z}/n\mathbb{Z},m) $ then satisfies all the required conditions of a  group. To show that $G$ is abelian, one must only note that $a+b=b+a~\forall ~ a,b\in \mathbb{Z}$ which implies that $\overline{a+b}=\overline{b+a}$, and consequently $m(\bar{a},\bar{b})=m(\bar{b},\bar{a})~\forall \bar{a},\bar{b}\in G$.\\
+\vspace{2mm}~\\
+\hrule
+\vspace{2mm}~\\
+\textbf{Notation:}\\
+We write $a=\bar{a}$, for example, in $\mathbb{Z}/5\mathbb{Z}$, we write $2+3=0$.
+\vspace{2mm}~\\
+\hrule
+\vspace{2mm}~\\
+\textbf{Lemma:}\\
+$1\in\mathbb{Z}/n\mathbb{Z}$ has order $n$.\\
+\textbf{Pf.:}\\
+\begin{align*}
+n\cdot 1 &= n = 0\\
+k\cdot 1&=k\neq 0 \text{, for } 0<k<n
+\end{align*}
+\subsection{Quaternion Group}
+Let $Q_8=\lbrace \pm 1,\pm i,\pm j,\pm k \rbrace$, with $m:Q_8\times Q_8\rightarrow Q_8$ given by:
+\begin{align*}
+i^2&=j^2=k^2=-1\\
+ij&=k,~ki=j,~jk=i\\
+ji&=-k,~ik=-j,~kj=-i
+\end{align*}
+where signs manipulate as expected.\\
+\vspace{2mm}~\\
+\textbf{Prop. 2.2.1}\\
+$(Q_8,m)$ is a group.
+\vspace{2mm}~\\
+\textbf{Pf.:}\\
+Simple to show associativity, left-unit, left-inverse. Not done here.\\
+\newpage
+\section{Lecture 3: Generators-Relations}
+Given a set $r_1,r_2,r_3,...,r_l$ of words (relations) in $g_1^{\pm},g_2^{\pm},...,g_k^{\pm}$ (generators). We can define a group 
+\begin{equation}
+G=\langle g_1,...,g_k|r_1,...,r_l\rangle
+\end{equation}
+This is called the presentation of a group. We will define the group more precisely later.\\
+\indent Elements of $G$ are words (combinations) of $g_1^{\pm},g_2^{\pm},...,g_l^{\pm}$ under the equivalence relation given by 
+\begin{itemize}
+\item removing/adding $g_ig_i^{-1}, g_i^{-1}g_i,e$,
+\item replacing an occurence of $r_i$ with $e$.
+\end{itemize}
+\vspace{2mm}~\\
+\hrule
+\vspace{2mm}~\\
+\textbf{Example: Dihedral Group}
+\begin{equation}
+D_{2n}=\langle r,s|r^n=s^2=(sr)^2=e\rangle
+\end{equation}
+Let $w$ try to enumerate all the elements of $D_{2n}$:
+If $f$ is any word in $r^{\pm},s^{\pm}$, use $r^-1=r^{n-1}$ and $s^{-1}=s$ to get a word in $r,s$. Since $s^2=e$, we can assume
+\begin{equation}
+f=r^{i_1}sr^{i_2}s...sr^{i_l},~i_j>0
+\end{equation}
+and then use $sr=(sr)^{-1}=r^{-1}s^{-1}=r^{n-1}$ to move the terms around and reach the form $f=sr^i$ or $f=r^i$.\\
+\begin{equation}
+\Rightarrow D_{2n}=\lbrace e,r,...,r^{n-1},s,rs,...,r^{n-1}s\rbrace
+\end{equation}
+These elements are not necessarily distinct.\\
+\indent $D_{2n}$ is the group of symmetries on a regular n-gon. $D_{2n}$ can be realised as 
+\begin{equation}
+r=
+\begin{pmatrix}
+\cos(\theta)&-\sin(\theta)\\
+\sin(\theta)&\cos(\theta)
+\end{pmatrix}
+,~\theta = \frac{2\pi}{n},~s=
+\begin{pmatrix}
+-1&0\\
+0&-1
+\end{pmatrix}
+\end{equation}
+\textbf{Remark:}
+\begin{itemize}
+\item $G=\langle \text{gen.}|\text{rel.}\rangle$ is always a group.
+\item Generally, it is difficult to decide for $x\in G$, if $x=e$.
+\end{itemize}
+\newpage
+\section{Lecture 4: Symmetric Group}
+The symmetric group is the group of bijective maps from a set of n elements to the its These map between permutations of these n elements.
+\begin{equation}
+S_n=\lbrace \sigma:\lbrace 1,2,...,n\rbrace\rightarrow\lbrace1,2,...,n\rbrace|\sigma \text{ bij}.\rbrace
+\end{equation}
+Each element of $S_n$ can be written in the form of the permutation it maps the original set to, ie. $\left(\sigma(1),...,\sigma(n)\right)$. \\
+\begin{equation}
+\sigma = \begin{pmatrix}
+2&1&3
+\end{pmatrix} \in S_3
+\text{ or } \sigma =\begin{pmatrix}
+1&2&3\\ 2&1&3
+\end{pmatrix}\in S_3.
+\end{equation}
+as well as this these maps can be decomposed into cycles. For example,
+\begin{align*}
+\sigma=\begin{pmatrix}
+1&2&3&45\\ 3&4&5&2&1
+\end{pmatrix}\in S_5\\
+1\rightarrow 3 \rightarrow 5 \rightarrow 1,~2\rightarrow 4 \rightarrow 2\\
+\Rightarrow \sigma = \begin{pmatrix}
+1&3&5
+\end{pmatrix}\begin{pmatrix}
+2&4
+\end{pmatrix}
+\end{align*}
+this is called cycle decomposition.\\
+\vspace{2mm}~\\
+\textbf{Def. 4.1:}\\
+Given $a_1,a_2,...,a_l\in \lbrace 1,...,n\rbrace$, all distinct, we define an \textbf{`l-cycle'}: $S_n\ni\sigma:=\begin{pmatrix}
+a_1&...&a_l
+\end{pmatrix}$\footnote{$\begin{pmatrix}
+a_1&a_2&...&a_l
+\end{pmatrix}=\begin{pmatrix}
+a_2&...&a_l&a_1
+\end{pmatrix}$}
+ by the formula 
+ \begin{equation}
+ \sigma(x)=
+	 \begin{cases}
+ 			a_{j+1} &\text{, if }x=a_j \\
+ 			x &\text{, else}
+	 \end{cases}
+ \end{equation}
+\textbf{Lemma 4.1}\\
+Let $\sigma=\begin{pmatrix}
+a_1&a_2&...&a_l
+\end{pmatrix}$
+and $\tau = \begin{pmatrix}
+b_1&b_2&...&b_k
+\end{pmatrix}$ be such that $\lbrace a_1,a_2,...,a_l\rbrace \wedge \lbrace b_1,b_2,...,b_k\rbrace = \emptyset$. Then $\sigma\cdot \tau=\tau\cdot\sigma$.
+\vspace{2mm}~\\
+\textbf{Pf.:}\\
+Since the two sets, $A=\lbrace a_1,a_2,...,a_l\rbrace,B=\lbrace b_1,b_2,...,b_k\rbrace$ are disjoint, $\sigma(b_i)=b_i,\tau(a_i)=a_i$ and $\sigma(x)=\tau(x)=x~\forall~x$ not in $A,B$. Therefore it follows that $\sigma\cdot\tau(b_i)=\tau\cdot\sigma(b_i)=b_{i+1}$, $\sigma\cdot\tau(a_i)=\tau\cdot\sigma(a_i)=a_{i+1}$, and $\sigma\cdot\tau(x)=\tau\cdot\sigma(x)=x~\forall~x$ not in $A,B$. Therefore $\forall ~ g\in \lbrace 1,...,n\rbrace,\tau\cdot\sigma=\sigma\cdot\tau$.\\
+\vspace{2mm}~\\
+\textbf{Prop. 4.1}\\
+Every $\sigma \in S_n$ admits a decomposition into disjoint cycles.
+\vspace{2mm}~\\
+\textbf{Pf.:}\\
+For some $\sigma\in S_n$, and $i\in\lbrace1,...,n\rbrace$ be s.t. $i=\mathrm{min}\lbrace j\in\lbrace1,...,n\rbrace|\sigma(j)\neq j\rbrace$. For some $l_1,l_2$, we have $\sigma^{l_1}(i)=\sigma^{l_2}(i)$. Therefore, $\sigma^{l_1-l_2}(i)=i$, and w.l.o.g. $l=l_1-l_2>0$. Set $\sigma=\begin{pmatrix}
+i&f(i)&...&f^{l-1}(i)
+\end{pmatrix}$.\\
+The proof is continued by replacing $\sigma$ with $\sigma_1^{-1}\cdot\sigma$, and $i=\mathrm{min}\lbrace j \in\lbrace1,...,n\rbrace| \sigma(j)\neq j\rbrace$ with $i=\mathrm{min}\lbrace j\in \lbrace1,...,n\rbrace\mathrm{min}\lbrace j \in\lbrace1,...,n\rbrace|\sigma_1^{-1}\cdot\sigma(j)\neq j\rbrace$ and repeating.\\
+\vspace{2mm}~\\
+\hrule 
+\vspace{2mm}~\\
+\textbf{Remark:}\\Not every product of cycles is a cycles decomposition. ie. If the cycles are not disjoint.
+\newpage
+\section{Lecture 5: The Category of Groups.}
+Consider $G=\lbrace e,a,b,c\rbrace$ with multiplication.
+\begin{equation}
+\begin{tabular}{c|cccc}
+~&e&a&b&c\\
+\hline
+e&e&a&b&c\\
+a&a&e&c&b\\
+b&b&c&a&e\\
+c&c&b&e&a\\
+\end{tabular}
+\end{equation}
+Note that if we assign $a=2,b=1,c=3$ this 'is' (isomorphic to, this will be defined later) $\mathbb{Z}/4\mathbb{Z}$.\\
+\vspace{2mm}~\\
+\textbf{Def. 5.1:}\\
+Let $G,H$ be groups. A group \textbf{homomorphism} is a map $\varphi:G\rightarrow H$ s.t.
+\begin{equation}
+\varphi(a\cdot_Gb)=\varphi (a)\cdot_H\varphi(b)
+\end{equation}
+($\cdot_G,\cdot_H$ denote the binary maps of $G,H$ respectively.)\\
+\vspace{2mm}~\\
+\textbf{Def. 5.2:}\\
+If group homomorphism $\varphi$ is a bijection, then it is called a \textbf{group isomorphism}. In this case $G,H$ are \textbf{isomorphic}.\\
+\vspace{2mm}~\\
+\textbf{Prop. 5.1:}\\
+Let $\varphi:G\rightarrow H$ be a group homomorphism. Then
+\begin{enumerate}
+\item $\varphi(e_G)=e_H$
+\item $\varphi(a^{-1})=\varphi(a)^{-1}$ 
+\end{enumerate}
+\textbf{Pf.:}\\
+From the definition of a group homomorphism:
+\begin{align*}
+\varphi(e_G\cdot_Gb)&=\varphi(e_G)\cdot_H\varphi(b)\\
+&=\varphi(b)
+\end{align*}
+This implies
+\begin{align*}
+\varphi(b)=\varphi(e_G)\cdot_H\varphi(b)
+\end{align*}
+which can only be true if
+\begin{equation}
+\varphi(e_G)=e_H
+\end{equation}
+proving the first condition. The second condition begins in a similar way, from the definition of a group homomorphism we know
+\begin{align*}
+\varphi(a\cdot_G a^{-1})=\varphi(a)\cdot_H\varphi(a^{-1})
+\end{align*}
+but 
+\begin{align*}
+\varphi(a\cdot_Ga^{-1})=\varphi(e_G)=e_H\\
+\Rightarrow \varphi(a)\cdot_H\varphi(a^{-1})=e_H\\
+\Rightarrow \varphi(a^{-1})=\varphi(a)^{-1}
+\end{align*}
+\begin{flushright}
+$\square$
+\end{flushright}
+\textbf{Def. 5.3:}\\
+$|G|$ is called the \textbf{order} of $G$. This is defined as the number of elements in the group for a finite group (group in which the underlying set is finite) or infinity for a non-finite group.\\
+\vspace{2mm}~\\
+\textbf{Prop. 5.2}\\
+Let $G$ be a group of order $2$. Then $G\cong \mathbb{Z}/2\mathbb{Z}$ (Isomorphic)
+\vspace{2mm}~\\
+\textbf{Pf.:}\\
+$G$ group $\Rightarrow$ $\exists~e\in G$, and $ a\in G$ s.t $a\neq e$. Define map $\varphi:\mathbb{Z}/n\mathbb{Z}\rightarrow G$.
+\begin{align*}
+0\mapsto&e\\
+1\mapsto&a
+\end{align*}
+We must then check that $\varphi(x+y)=\varphi(x)\varphi(y)~\forall~,y\in \mathbb{z}/n\mathbb{Z}$:\\
+\begin{center}
+\begin{tabular}{c|c|c}
+$x$&$y$&~\\
+\hline
+$0$&$0$&Trivially true\\
+\hline
+$1$&$1$&$\varphi(1+1)=\varphi(0)=e$\\
+~&~&$\varphi (1)\varphi(1)=a^2$\\
+~&~&Only true if $a^2=e$, which must be true since $a^2=a$ implies $a=e$.\\
+\hline
+$0$&$1$&True since $\varphi(1)=a$, $e\varphi(1)=a$\\
+\hline
+$1$&$0$&True since $\varphi(1)=a$, $e\varphi(1)=a$\\
+\end{tabular}
+\end{center}
+\textbf{Prop. 5.3:}\\
+\begin{enumerate}
+\item Let $f:H\rightarrow K$, $g:G\rightarrow H$ be group homomorphisms, then so is $f\circ g$.
+\item Let $f:H\rightarrow K$ be a group isomorphism, then so is $f^{-1}$.
+\end{enumerate}
+\textbf{Pf.:}
+\begin{enumerate}
+\item $ (f\circ g)(ab)=f(g(ab)=f(g(a)g(b))=f(g(a))f(g(b))=(f\circ g)(a)(f\circ g)(b)$\\
+Therefore $f\circ g$ satisfies the condition of a group homomorphism.
+\item $f(f^{-1}(ab))=ab=f(f^{-1}(a))f(f^{-1}(b))$, then since $f$ is injective, $f(p)=f(q)$ implies $p=q$. Therefore $f^{-1}(ab)=f^{-1}(a)f^{-1}(b)$, and $f^{-1}$ is then a group homomorphism.
+\end{enumerate}
+\newpage
+\section{Lecture 6: Group Actions}
+\textbf{Def. 6.1:}
+A \textbf{group action} of a group $G$ on a set $X$ is a map $G\times X\rightarrow X$ written as $(g,x)\mapsto g.x$ s.t.
+\begin{itemize}
+\item $g_1\cdot (g_2\cdot x)=(g_1g_2)\cdot x$
+\item $e\cdot x = x$
+\end{itemize}
+We sometimes write $G\circlearrowright X$.\\
+\vspace{2mm}~\\
+A map of sets $G\times X\rightarrow X$ can be equivalently given by
+\begin{align*}
+G&\rightarrow^{\rho}\lbrace f:X\rightarrow X\rbrace\\
+g&\mapsto\rho(g)
+\end{align*}
+where $\rho(g)(x)=g\cdot x$.\\
+\vspace{2mm}~\\
+\textbf{Prop. 6.1:}\\
+A map $G\times X\rightarrow X$ defines a group action iff\footnote{If and only if} the corresponding map $G\rightarrow^{\rho}\lbrace f:X\rightarrow X\rbrace$ is s.t. $\rho(g)\in S_X ~\forall~g\in G$ and $\rho:G\rightarrow S_X$ is a group homomorphism.\footnote{$S_X$ is the symmetric group on set $X$} \vspace{2mm}\\
+\textbf{Pf.:}
+\begin{align*}
+\rho (g_1)(\rho(g_2)(x))=\rho(g_1g_2)(x)~&\Leftrightarrow ~\rho(g_1)\circ\rho(g_2)=\rho(g_1g_2)\\&\Leftrightarrow ~\rho(e)=\mathrm{id}_X
+\end{align*}
+
+\begin{align*}
+``\Rightarrow":~&\rho(g)\circ\rho(g^{-1})=\rho(gg^{-1})=\rho(e)=\mathrm{id}_X ~\Rightarrow\rho(g)\text{ surj.}\footnotemark\\ &\rho(g^{-1})\circ\rho(g)=\rho(g^{-1}g)=\mathrm{id}_X~\Rightarrow\rho(g)\text{ inj.}\footnotemark
+\end{align*}\footnotetext{ Maps are surjective if and only if a right inverse exists for each element. Maps are injective if and only if a left inverse exists for each element.}
+This implies that $\rho(g)\in S_X$, as the requirement is that the map is bijective. Since the first line, at the start of the proof, is true for any for any group action, this implies that $\rho:G\rightarrow S_X$ is a group homomorphism. Then, since all steps taken are reversible, the same process can be taken in reverse to show the bijectivity of $\rho(g)$, and $\rho$ being a group homomorphism, implies that the map $G\times X\rightarrow X$ is a group action, proving $``\Leftarrow"$. \\
+\vspace{2mm}~\\
+\hrule
+\vspace{2mm}~\\
+\textbf{Examples:}
+\begin{enumerate}
+\item Trivial action: For any $X$, we define $G\times X\rightarrow X$ s.t. $(g,x)\mapsto x$.
+\item Defining action of $S_X$ on $X$: $S_X\times X\rightarrow X$, $(\sigma,x)\mapsto\sigma(x)$.\\ We can claim that the map $\rho$ from above is in this scenario $\mathrm{id}:S_X\rightarrow S_X$.
+\item $G$ acting on itself by \\
+\begin{tabular}{ccc}
+$\rho_l : G\times G\rightarrow G$&$(g,x)\mapsto gx$& Called \textbf{left regular action}.\\
+$\rho_r:G\times G\rightarrow G$&$(g,x)\mapsto xg^{-1}$& Called \textbf{right regular action}.\\
+$\rho_{adj.}:G\times G\rightarrow G$&$(g,x)\mapsto gxg^{-1}$& Called \textbf{adjoint action}.
+\end{tabular}
+\vspace{2mm}~\\
+\hrule
+\vspace{2mm}~\\
+Verification of each as a group action:
+\begin{align*}
+\rho_l:& \\
+		&\text{ We can let the map corresponding to }\rho_l,\phi:G\rightarrow\lbrace f:X\rightarrow X\rbrace \text{ be s.t. }\phi(g)(x)=gx.\\
+		&\text{ Then } \phi(g_1)(\phi(g_2)(x))=\phi(g_1)(g_2x)=g_1g_2x=\phi(g_1g_2)(x).\\
+		&\Rightarrow ~\phi(g_1)\circ\phi(g_2)=\phi(g_1g_2), \phi(e)=e\\
+		&\text{ As in the above proof, this implies both left and right inverses therefore }\rho_l\in S_X\\
+\rho_r:&\\
+		&\text{ Analagous to }\rho_l\\
+\rho_{adj.}:&\\
+		& \text{ Similar to }\rho_l, \text{ define } \phi(g)(x)=gxg^{-1}. \text{ Then } \phi(g_1)(\phi(g_2)(x))=\phi(g_1)(g_2xg_2^{-1})\\&=g_1g_2xg_2^{-1}g_1^{-1}=(g_1g_2)x(g_1g_2)^{-1}=\phi(g_1g_2)(x).\\
+		&\Rightarrow ~\phi(g_1)\circ\phi(g_2)=\phi(g_1g_2), \phi(e)=e\\
+		& \text{ Same conclusion can be drawn as in the case of } \rho_l.
+\end{align*}
+\item $D_{2n}\times\lbrace1,...,n\rbrace\rightarrow\lbrace1,...,n\rbrace:$
+\begin{align*}
+(r^i,j)&\mapsto i+j \text{ mod }n\\
+(r^is,j)&\mapsto i-j\text{ mod }n
+\end{align*}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.2\textwidth]{/home/dj-lawton/Documents/Tikz/tikzit_image4.png}
+\caption{\label{fig: Dihedral}Illustration of the action of the $D_{12}$ group on the set $\lbrace 1,...,n\rbrace$. The element $s$ of $D_{2n}$ reflects across the vertical, and the element $r$ rotates by $\frac{2\pi}{n}$ in the anti-clockwise direction. }
+\end{center}
+\end{figure}
+
+\end{enumerate}
+\newpage
+\section{Lecture 7: Subgroups}
+\textbf{Def. 7.1:}\\
+A subset $H\leq G$ of a group $(G,m)$ is a \textbf{subgroup} if the restriction of $m$ to $H\times H$ turns $H$ into a group. We write $H\leq  G$ in that case.
+\vspace{2mm}~\\
+\hrule
+\vspace{2mm}~\\
+\textbf{Remark:}\\
+To specify, $H$ is required to have contain the unit, inverses and be associative, it is also required to have closure under $m$. That is to say $\forall ~a,b\in H,m(a,b)\in H$.
+\vspace{2mm}~\\
+\hrule
+\vspace{2mm}~\\
+\textbf{Prop. 7.1:}\\
+$H\subseteq G$ is a subgroup iff
+\begin{itemize}
+\item $H$ is non-empty.
+\item if $a,b\in H$, $ab^{-1}\in H$.
+\end{itemize}
+\textbf{Pf.}
+\begin{align*}
+"\Rightarrow":&~H\leq G\Rightarrow ~\exists~ e\in H\text{ s.t. } ea=a~\forall~a\in H.\\
+&\therefore H\text{ non-empty.}\\
+&~H\leq G\Rightarrow ~\forall ~ b\in H,~\exists~c\in H\text{ s.t. }bc=e~(c=b^{-1})\\
+&\therefore ~\forall~ a,b\in H,m(a,b^{-1})=ab^{-1}\in H\text{ due to closure under } m\\
+~\\
+"\Leftarrow":& \text{ As a subset of } G,\text{ associativity implied.}\\
+&~ H \text{ non-empty } \therefore ~\exists~h\in H.\text{ Second condition implies } aa^{-1}\in H\Rightarrow e\in H.\text{ (unit exists)}\\
+&\text{ w.l.o.g. we can impose that the subset }H\text{ is not the trivial group, ie. }H\neq(\lbrace h=e\rbrace,m),\\
+&~\Rightarrow ~\exists~h\in H\text{ s.t. } h\neq e.\Rightarrow eh^{-1}=h^{-1}\in H.\text{ (inverses exist)}\\
+&~\text{for any 2 elements } a,b\in H, ab^{-1}\in H\text{ and } b^{-1}\Rightarrow a,b^{-1}\in H\text{ so } ab\in H. \text{ (closure)}\\
+&~\therefore H\leq G.
+\end{align*}
+\begin{flushright}
+$\square$
+\end{flushright}
+
+\hrule
+\vspace{2mm}~\\
+\textbf{Examples:}\\
+\begin{enumerate}
+\item Every group $G$ has a trivial subgroup, $(\lbrace e\rbrace,m)\leq G$, and an improper subgroup, $G\leq G$.
+\item $n\mathbb{Z}=\lbrace nk|k\in\mathbb{Z}\rbrace\subseteq \mathbb{Z}$ is a subgroup of $(\mathbb{Z},+)$.
+\item Given $x\in G$, $\langle x\rangle=\lbrace x^n|n\in \mathbb{Z}\rbrace\subseteq G$ is the subgroup of $G$ generated by $x$.
+\item Let $G\times X\rightarrow X$ be a group action, and $s\in X$. The \textbf{stabilizer of $s$}, $G_s:=\lbrace g\in G|g\cdot s=s\rbrace$, forms a subgroup of $G$.
+\item Let $\varphi:G\rightarrow H$ be a group homomorphism. Then
+\begin{itemize}
+\item $\mathrm{ker }~\varphi:=\lbrace g\in G | \varphi(g)=e\rbrace$
+\item $\mathrm{im }~\varphi:=\varphi(G)=\lbrace \varphi(g)\in H | g\in G\rbrace$
+\end{itemize}
+are both subgroups, of $G$ and $H$ respectively.
+\end{enumerate}
+\newpage
+\section{Lecture 8: Cyclic Groups and Subgroups.}
+\textbf{Def. 8.1:}\\
+A group $H$ is \textbf{cyclic} if it can be generated by a single element. That is to say $\exists~ x\in H$ s.t. $H=\langle x\rangle=\lbrace x^n|n\in \mathbb{Z}\rbrace$.\\
+\vspace{2mm}~\\
+\textbf{Prop. 8.1:}\\
+If  $H=\langle x\rangle$, then $|H|=|x|$  \footnote{The order of element $x\in G$ can also be defined as the order of the subgroup which it generates.}. Also
+\begin{enumerate}
+\item if $|H|=n<\infty$, then the elements $e,x,x^2,...,x^{n-1}$ are all distinct and $H=\lbrace e,x,...,x^{n-1}\rbrace$.
+\item if $|H|=\infty$ then $H=\lbrace ...,x^{-2},x^{-1},e,x,x^2,...\rbrace$ and $x^a\neq x^b$ if $a\neq b$. 
+\end{enumerate}
+\textbf{Pf.}\\
+\begin{align*}
+|x|=n:~&\\
+& \text{We first show }H=\langle x \rangle\subseteq\lbrace e,x,...,x^{n-1}\rbrace.\\
+&\text{ Let } x^m\in H,~m=kn+r, ~0\leq r\leq n-1\\
+&x^m=x^{kn+r}=x^n\cdot x^n \cdot ... \cdot x^n \cdot x^r = e\cdot x^r=x^r\\
+&\Rightarrow ~ H=\langle x\rangle=\lbrace x^r|0\leq r\leq n-1\rbrace=\lbrace e,x,...,x^{n-1}\rbrace.\\
+&~\\
+&\text{To show } x^i\neq x^j~\forall~i,j\text{ s.t. }0\leq i,j\leq n-1,\\
+&\text{ assume } x^i=x^j,~\Rightarrow x^{i-j}=e. \text{ But, }0\leq i-j\leq n-1,\text{ contradicting } |x|=n\\
+&~\\
+|x|=\infty:~&\\
+&x^i\neq x^j~\forall~ i\neq j\text{ shown as in the first case.}
+\end{align*}
+\textbf{Theorem 8.1:}\\
+Let $H=\langle x\rangle$, then
+\begin{itemize}
+\item if $|H|=n$, there exists a group isomorphism defined by
+\begin{align}
+\varphi:~ &\mathbb{Z}/n\mathbb{Z}\rightarrow H\\
+			  &k\mapsto x^k
+\end{align}
+\item and if $|H|=\infty$, there exists group isomorphism defined by
+\begin{align*}
+\varphi:~&\mathbb{Z}\rightarrow H\\
+&k\mapsto x^k
+\end{align*}
+\end{itemize}
+\textbf{Pf.}\\
+\begin{itemize}
+\item $\varphi $ well defined:\\
+Finite order: $k\equiv l (\mathrm{mod}~n)\Rightarrow k=l+mn,~m\in\mathbb{Z}.$\\
+Then $x^k=x^{l+mn}=x^l(x^n)^m=x^l$. No equivalent terms in $\mathbb{Z}$ for non-finite order.
+\item $\varphi$ group homomorphism:\\
+$\varphi(k_1+k_2)=x^{k_1+k_2}=x^{k_1}\cdot x^{k_2}=\varphi(k_1)\cdot\varphi(k_2)$
+\item  $\varphi$ bijective:\\
+Follows from previous proposition. Also provable through existence of left, right inverses.
+\end{itemize}
+
+
+
+\end{document}

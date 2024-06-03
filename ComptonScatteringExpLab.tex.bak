@@ -1,0 +1,241 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{mathalpha}
+\usepackage{tikz}
+\usepackage{cite}
+
+\title{Compton Scattering: An Examination of the Compton Effect}
+\author{SF Theoretical Physics Lab Report\\David Lawton\\22337087\\Lab Partner: Jack Price}
+\date{26th Feb. 2024}
+
+\begin{document}
+
+\maketitle
+\vfill
+\tableofcontents
+
+\newpage
+\section{Abstract}
+In this experiment, we aimed to re-derive the Compton scattering formulae, and subsequently deduce both the mass of the electron, the Compton wavelength of the electron, and the radius of the electron, using a $\gamma$-ray source Cs-137, a detector, an array of lead blocks, and various plotting and data analysis programs.
+\indent We were successful in our aims, with the exception of finding the radius of the electron. While our results were relatively close, our error margin was quite large and in a repeat, I would do more to reduce this.
+\section{Introduction}
+This experiment was a study of the Compton effect and Compton scattering. The Compton effect is defined as the change in energy of photons in inelastic collisions with electrons, which can reach relativistic velocities. The change in energy of the photon is equal to the change in energy of the electron, since this electron is approximately static with respect to the photon, the photon can only lose energy and the electron can only gain energy. Therefore we can deduce that the wavelength of the scattered photon is larger than that of the incident photon.\\
+\subsection{Previous Classical Theory}
+A.H. Compton's theory on the scattering of photons incident on an electron was preceded by an earlier theory from J.J. Thomson. Thomson scattering, while now thought of as the low-energy limit of Compton scattering, was at a time the main theory itself. Thomson scattering takes the collision as elastic, so the wavelength of the scattered photon is equal to the incident one, as are the initial and final electron kinetic energy. Thomson scattering is valid with the condition
+\begin{equation}
+\mathrm{h}\nu_0 \ll \mathrm{m}_e \mathrm{c}^2
+\label{eq: ThomCond}
+\end{equation}
+where $\mathrm{h}$ is Planck's constant, $\nu_0$ is the frequency of the incident photon, $ \mathrm{m}_e$ is the mass of the electron, and $\mathrm{c}$ is the speed of light.\\
+\indent The scattering cross section of Thomson scattering is independent of wavelength and frequency,
+\begin{equation}
+\sigma_{\text{Th}} = \frac{8\pi}{3} \mathrm{r}_e^2
+\label{eq: ThomCS}
+\end{equation}
+The independence of this from the energy of the incident photon suggests that the manner in which photons are scattered is independent of their energy. This theory is contradicted by scattering experiments at non-negligible photon energies.
+\subsection{Compton's Quantum Theory of Scattering}
+The basis for Compton's theory is that any quantum or photon is scattered not by, as previously thought, all the electrons in surface, but instead by a single one. The photon is subsequently scattered at some angle to the initial direction, with a change in its energy, it follows that the electron gains some kinetic energy equal to the loss in energy of the photon.\\
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{/home/dj-lawton/Pictures/Screenshots/Screenshot from 2024-03-05 15-50-49.png}
+\caption{\label{fig: ComptEff} Depiction of the collision between photon and electron.}
+\end{center}
+\end{figure}
+In the above diagrams, the relativistic electron momentum is
+\begin{equation}
+\mathrm{m}_ev\gamma\text{, where } \gamma = \frac{1}{\sqrt{1-\frac{v^2}{c^2}}}
+\end{equation}
+and when we redefine $\beta=\frac{v}{\mathrm{c}}$, from the conservation of momentum, the following expression is found,
+\begin{equation}
+\left(\frac{\mathrm{m}_e\beta c}{\sqrt{1-\beta^2}}\right)^2=\left(\frac{\mathrm{h}\nu_0}{c}\right)^2 + \left(\frac{\mathrm{h}\nu_{\theta}}{c}\right)^2 + 2 \frac{\mathrm{h}\nu_{0}}{c} \cdot \frac{\mathrm{h}\nu_{\theta}}{c} \mathrm{cos}\theta.
+\label{eq: consM}
+\end{equation}
+Additionally, from the conservation of energy, the sum of the initial energies equals the sum of the final energies.
+\begin{equation}
+\mathrm{h}\nu_0 + \mathrm{m}_ec^2 = \mathrm{h}\nu_{\theta} + \frac{\mathrm{m}_ec^2}{\sqrt{1-\beta^2}}
+\label{eq: consE}
+\end{equation}
+It follows to solve for $\beta$ and $\nu_{\theta}$ from Eq.~\ref{eq: consM} and Eq.~\ref{eq: consE},
+\begin{equation}
+\nu_{\theta}=\frac{\nu_{0}}{(1+2\alpha\mathrm{sin}^2\left(\sfrac{\theta}{2}\right))},~\beta = 2 \alpha \mathrm{sin} {(\sfrac{\theta}{2})} \frac{\sqrt{1+(2 \alpha +\alpha^2)\mathrm{sin}^2(\sfrac{\theta}{2})}}{1+2(\alpha+\alpha^2)\mathrm{sin}^2(\sfrac{\theta}{2})}
+\label{eq: CompFreqBeta}
+\end{equation}
+where $\alpha$ is defined for convenience.
+\begin{equation}
+\alpha = \frac{\mathrm{h}\nu_0}{\mathrm{m}_ec^2}
+\end{equation}
+From Eq.~\ref{eq: CompFreqBeta}, a formula for wavelength can then be trivially deduced.
+\begin{equation}
+\lambda_{\theta}=\lambda_0+\left(\frac{2\mathrm{h}}{\mathrm{m_ec}}\right)\mathrm{sin}^2\left(\frac{\theta}{2}\right)
+\label{eq:ComptonShift1}
+\end{equation}
+This too can be manipulated to find another interesting property, the Compton Shift at a given angle, $\Delta\lambda = \lambda_{theta}-\lambda_0$, using a trigonometric identity.
+\begin{equation}
+\Delta\lambda=\frac{\mathrm{h}}{\mathrm{m_ec}}(1-\mathrm{cos}\theta)
+\end{equation}
+\subsection{Compton Scattering Angular Distribution}
+The angular distribution of photons scattered from Compton scattering is described with the Klein-Nishina formula. The derivation of the formula in 1928 was one of the first successful applications of the Dirac equation, and will not be derived here. 
+\begin{equation}
+\sigma(E,\theta)=\mathrm{r}_e^2\frac{1+\mathrm{cos}^2(\theta)}{2}\xi^2\left(\xi + \frac{1}{\xi}-\mathrm{sin}^2(\theta)\right), ~\xi=\frac{1}{1-\frac{E}{\mathrm{m_ec}^2}\mathrm{cos}(\theta)}=\frac{\lambda_{\theta}}{\lambda_0}
+\end{equation} 
+Here, $\sigma $ is the differential cross-section and $\mathrm{r_e}$ is the Compton radius of the electron. The Klein-Nishina formula for differential cross section produces interesting distributions based on energy.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{/home/dj-lawton/Documents/SF Lab Plots/KleinNishina.pdf}
+\caption{\label{fig: KleinNishina}Klein-NIshina distribution for various energies, the lower figure is limited to 180 degrees due to the evident reflectional symmetry in the upper. The emerging second reflectional symmetry at low energies agrees with the low-energy approximation of the Thomson scattering.}
+\end{center}
+\end{figure}
+\section{Methodology}
+Note: Throughout the procedure, all handling of lead was done while wearing rubber gloves.\\
+\subsection{Setup \& Calibration}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{/home/dj-lawton/Pictures/Screenshots/Comptonsetup.png}
+\caption{\label{fig: Setup} An illustration of the laboratory setup as in the laboratory manual.}
+\end{center}
+\end{figure}
+To begin this experiment, we first calibrated the detection program using a calibration source containing americium, caesium, and lead. We chose a factor, deciding the spread of energies across the 512 channels. Then, we placed the calibration source in the lead block and placed it against the source. We then gathered a spectrum for the calibration, subsequently fitting Gaussian peaks corresponding to each source of radiation as below.
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline 
+Energy (keV) & Energy Error (keV) & Radiation Type/Source \\ 
+\hline 
+18 & 4 & X-Ray/Am \\ 
+\hline 
+32 & 2 & X-Ray/Cs \\ 
+\hline 
+59.54 & 0.01 & $\gamma$/Am \\ 
+\hline 
+75 & 1 & X-Ray/Pb \\ 
+\hline 
+662 & 1 & $\gamma$/Cs \\ 
+\hline 
+\end{tabular}
+\end{center} 
+This allowed us to establish a linear fit by graphing each peak's channel number against its corresponding energy. This calibration allows us to fit graphs against energy instead of channel number.\\
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/Calibration.jpg}
+\caption{\label{fig: calib} Calibration for energy vs. channel, note the non-zero intercept and strangely high R-square.}
+\end{center}
+\end{figure}
+This establishes a linear relationship between the discrete channel number and the continuous energy. For a factor of -10.11, we measured the slope to be $1.577\pm 0.00268$, with an intercept at $-9.852\pm0.118$, and an absurd R-square of $0.99999$\\
+\subsection{Cs-137 Sampling and Fitting}
+We placed our, primarily $\gamma$-ray source, Cs-137 in the lead block, returning the calibration source to a safe location. A scatterer is placed in the center, around which we gathered samples at thirty degree intervals from 0 to 150 degrees. At each angle, we set up lead blocks around the desired straight path to the scatterer, and then detector, we also placed a lead block at the back of the source block, to keep the ray collimated. Each sample was taken over approximately 20 minutes.
+After data was collected, at each angle, we graphed the sample against energy, using the earlier calibration. For each sample two peaks emerged, one at the minimum and one near the expected value at that angle. We ignored the constant peak and used a Voigt single peak fitting for the other.\\
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/VoigtFit.jpg}
+\caption{\label{fig: peak eg} A Voigt single peak fit for the sample at 30 degrees. the `xc' variable is the E value at the maximum. Note the sharper peak of the Voigt fit, as compared to the wider Gaussian.}
+\end{center}
+\end{figure}
+We noted each peak's energy and the error of the fit. As can be seen in figures \ref{fig: 0deg}, \ref{fig: peak eg},\ref{fig: 0deg}, \ref{fig: 60deg}, \ref{fig: 90deg}, \ref{fig: 120deg}, \ref{fig: 150deg}. (Those not above are in the appendix.)
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+$\theta$ (Degrees) & $\theta$ Error & Energy (keV) & Energy Error (keV) \\ 
+\hline 
+0 & 5 & 669.4327 & 0.1264\\ 
+\hline 
+30 & 5 & 524.5461& 0.9395\\ 
+\hline 
+60 & 5 & 405.9176 & 1.5615\\ 
+\hline 
+90 & 5 & 299.44626 & 0.86255\\ 
+\hline 
+120 & 5 & 236.5664 & 0.4409\\ 
+\hline
+150 & 5 & 227.7574 & 2.4864\\
+\hline 
+\end{tabular}
+\end{center} 
+Next we plotted the energy versus the angle for these peaks, and fitted the Compton shift formula (Eq.~\ref{eq:ComptonShift1}) to find the mass of the electron. Also included is the theoretical fitting with proper empirical values. The error from the angle factors majorly into the result, as the resolution of the measurement was ten degrees, to improve accuracy, one should use a more accurate angle measurement.
+
+\section{Results}
+The first result concerned the calibration (Fig.~\ref{fig: calib}). The intercept of the calibration was negative, which would suggest particles with negative energies in the low channels. As well as this, the R-square of the fit is extremely high. \\
+\indent The second result, concerned the value of the energy of Cs $\gamma$-rays. When the energy vs angle data was plotted with unfixed electron mass and unfixed energy for the initial photon, the returned value of energy is $668.826\pm3.280$ keV, which is somewhat significantly higher than the expected 662 keV. \\
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/AngularDependenceFinal.jpg}
+\caption{\label{fig: AngDep} Plot of the angular dependence of photon energy after the collision described by the Compton shift in Eq.~\ref{eq:ComptonShift1}.}
+\end{center}
+\end{figure}
+The third result concerned the mass of the electron.  After the fitting of the Compton Shift, a mass of $(9.522\pm1.784)\cdot10^{-31}$ kg. This is equivalent to a mass energy of 535.612 keV. By filling into the formulas\\
+\begin{equation}
+\lambda_c=\frac{\mathrm{hc}}{E}
+\end{equation}
+the Compton wavelength of the electron is deduced to be $2.319\pm0.434\cdot10^{-12}$m. These experimental results are relatively close to the empirically measured values.\\
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Quantity & Measured Value & Empirical Value & Error \\ 
+\hline 
+$\mathrm{m_e}$ &($ 9.522\pm1.784$)E-31 kg & 9.109 E-31 kg & 4.5\%\\ 
+\hline 
+$E_e$ & $535.612\pm 100.35$ keV& 512.382 keV & 4.5\%\\ 
+\hline 
+$\lambda_c$ & $(2.319\pm0.434)$E-12m & 2.42 E-12 & 4.2\%\\ 
+\hline 
+
+\end{tabular}
+\end{center} 
+\section{Conclusion}
+In conclusion, the mass of the electron and Compton wavelength were verified to a reasonable degree of accuracy. To reduce the error produced I would take several steps. Firstly, I would include the offset in the linear fit. At a guess, I would say that in the separation of energies in the program is not linear for small values. Therefore including the approx. 9 keV offset would likely give us a more accurate electron mass value. When looking at the plotted Compton shift, it is obvious that the measured curve differs from the empirical by a constant, which could be partially attributed to ignoring this offset. I would also use a more accurate measurement for angle than used here. \\
+\indent I also found that a Lorentz fit was in some places more accurate for the fitting of the curve, and while I did not use it for any of the results, I would wonder if there is a reason for this being the case.\\
+\indent In the case of the absurdly high calibration R-square, this might simply have been caused by the long period of time for which we ran the count.\\
+\section{References}
+\begin{enumerate}
+\item SciPython.com, User: christian, `The Klein–Nishina formula '\\ \url{https://scipython.com/blog/the-kleinnishina-formula/}
+\item Compton, Arthur H. A Quantum Theory of the Scattering of X-rays by Light Elements. Phys. Rev. 21, 483 (1923)
+\item SF Physics Laboratory Manual. Trinity College Dublin, School of Physics
+\item Feynman, Richard P. The Feynman Lectures on Physics. Reading, Mass. :Addison-Wesley Pub. Co., 19631965.
+\item Bergman, P.G. (1942) Introduction to the Theory of Relativity. Prentice-Hall, Inc., Upper Saddle River.
+\item "Compton wavelength." Oxford Reference. ; Accessed 20 Mar. 2024. \\ \url{https://www.oxfordreference.com/view/10.1093/oi/authority.20110803095629822}.
+\item  "Elementary rest mass." Oxford Reference. ; Accessed 20 Mar. 2024. \\ \url{https://www.oxfordreference.com/view/10.1093/oi/authority.20110810104828149}.
+\end{enumerate}
+\section{Appendix}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/0degsample.jpg}
+\caption{\label{fig: 0deg} Sample taken at 0 degrees}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/60degsample.jpg}
+\caption{\label{fig: 60deg} Sample taken at 60 degrees}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/90degsample.jpg}
+\caption{\label{fig: 90deg} Sample taken at 90 degrees}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/120degsample.jpg}
+\caption{\label{fig: 120deg} Sample taken at 120 degrees}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{/home/dj-lawton/.wine/drive_c/users/dj-lawton/Documents/OriginLab/User Files/150degsample.jpg}
+\caption{\label{fig: 150deg} Sample taken at 150 degrees}
+\end{center}
+\end{figure}
+
+\end{document}
