@@ -1,0 +1,32 @@
+\documentclass{letter}
+
+
+\usepackage{hyperref}
+
+\hypersetup{
+  colorlinks   = true,    % Colours links instead of ugly boxes
+  urlcolor     = blue,    % Colour for external hyperlinks
+  linkcolor    = blue,    % Colour of internal links
+  citecolor    = red      % Colour of citations
+}
+
+\signature{David Lawton}
+\address{39 Landscape Park \\ Churchtown \\ Dublin 14 \\ D14 A304}	
+\begin{document}
+\begin{letter}{D. E. SHAW \& CO\\
+1166 Avenue of the Americas\\
+New York, NY 10036\\}
+\opening{Dear Sir/Madam,}
+
+I am writing to you to apply for several internships at D.E. Shaw \& Co. I hope that I find you in good health, my name is David Lawton and I am a university student at Trinity College Dublin. I am currently enrolled in a BA in Theoretical Physics.\\
+
+I believe I would be well suited for any of the internships for which I am applying, foremost of which I would put the Quantitative Analyst Intern position. I am not someone who has ever had much exposure to financial markets, and I want to change that. I am curious about the processes that sustain investment firms, especially the mathematics and coding behind the decisions that are made everyday in such corporations.\\
+
+The skills I possess that I believe are most relevant to these internships are the maths/physics/programming tools I have gained during college, the problem solving skills that I have always tried to nurture and challenge, and my commitment to learning. I think that my ability to adapt to a new environment, which I improved when I moved to a new city for college, my experience in hospitality, and my involvement in team sports, would allow me to collaborate well with my co-workers. I would also mention my ability to write in Latex, and my familiarity with analysing data in experimental physics laboratories.\\
+
+Please find attached my CV, Academic History, and writing sample. Thank you for your considerations, I await your response patiently.\\
+
+
+\closing{Yours faithfully,}
+\end{letter}
+\end{document}

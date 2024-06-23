@@ -1,10 +1,14 @@
 \contentsline {section}{\numberline {1}Lecture 1: Definitions \& Examples}{2}{section.1}%
-\contentsline {section}{\numberline {2}Lecture 2: Integers Modulo n and the Quaternion Group}{5}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Integers Modulo n: $\mathbb {Z}/n\mathbb {Z}$}{5}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Quaternion Group}{6}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Lecture 3: Generators-Relations}{7}{section.3}%
-\contentsline {section}{\numberline {4}Lecture 4: Symmetric Group}{8}{section.4}%
-\contentsline {section}{\numberline {5}Lecture 5: The Category of Groups.}{9}{section.5}%
-\contentsline {section}{\numberline {6}Lecture 6: Group Actions}{11}{section.6}%
-\contentsline {section}{\numberline {7}Lecture 7: Subgroups}{13}{section.7}%
-\contentsline {section}{\numberline {8}Lecture 8: Cyclic Groups and Subgroups.}{14}{section.8}%
+\contentsline {section}{\numberline {2}Lecture 2: Integers Modulo n and the Quaternion Group}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Integers Modulo n: $\mathbb {Z}/n\mathbb {Z}$}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Quaternion Group}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Lecture 3: Generators-Relations}{6}{section.3}%
+\contentsline {section}{\numberline {4}Lecture 4: Symmetric Group}{7}{section.4}%
+\contentsline {section}{\numberline {5}Lecture 5: The Category of Groups.}{8}{section.5}%
+\contentsline {section}{\numberline {6}Lecture 6: Group Actions}{10}{section.6}%
+\contentsline {section}{\numberline {7}Lecture 7: Subgroups}{12}{section.7}%
+\contentsline {section}{\numberline {8}Lecture 8: Cyclic Groups and Subgroups.}{13}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Cyclic Groups}{13}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Subgroups of Cyclic Groups}{15}{subsection.8.2}%
+\contentsline {section}{\numberline {9}Lecture 9: Euclidean Algorithm}{16}{section.9}%
+\contentsline {section}{\numberline {10}Lecture 10: Subgroups of Finite Cyclic Groups}{18}{section.10}%
