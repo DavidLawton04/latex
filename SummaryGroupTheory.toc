@@ -12,3 +12,4 @@
 \contentsline {subsection}{\numberline {8.2}Subgroups of Cyclic Groups}{15}{subsection.8.2}%
 \contentsline {section}{\numberline {9}Lecture 9: Euclidean Algorithm}{16}{section.9}%
 \contentsline {section}{\numberline {10}Lecture 10: Subgroups of Finite Cyclic Groups}{18}{section.10}%
+\contentsline {section}{\numberline {11}Lecture 11: Normal Subgroups}{21}{section.11}%
