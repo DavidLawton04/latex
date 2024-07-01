@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1719245480.74628 "/home/dj-lawton/latex/SummaryGroupTheory.tex" "SummaryGroupTheory.pdf" "SummaryGroupTheory" 1719245482.02452 2
+["pdflatex"] 1719797536.15932 "/home/dj-lawton/latex/SummaryGroupTheory.tex" "SummaryGroupTheory.pdf" "SummaryGroupTheory" 1719797537.6932 0
   "/etc/texmf/web2c/texmf.cnf" 1695845280.71272 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/dj-lawton/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk" 1718979120.70707 11524 a87088f172936cc3f99adb3e83ccff3a ""
   "/home/dj-lawton/Documents/Tikz/tikzit_image4.png" 1717156326.73 11239 943fd337a2617abb52b57bffadf133ac ""
-  "/home/dj-lawton/latex/SummaryGroupTheory.tex" 1719245478.6308 44751 6c76dccec3a822d7eb8a6be508356770 ""
+  "/home/dj-lawton/latex/SummaryGroupTheory.tex" 1719797534.01443 46097 c84c3dbe4c0d35c871dc8677de905e5d ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -16,8 +16,6 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1246382020 940 228d6584342e91276bf566bcf9716b83 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
-  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm" 1136768653 1332 f817c21a1ba54560425663374f1b651a ""
-  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm" 1136768653 1336 3125ccb448c1a09074e3aa4a9832f130 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmex10.tfm" 1136768653 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm" 1136768653 1512 f21f83efb36853c0b70002322c1ab3ad ""
@@ -194,10 +192,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1719069489.09729 128028 f533b797fba58d231669ea19e894e23e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1719069542 6851218 4c73941fa8c1fdb11510831324b33f75 ""
-  "SummaryGroupTheory.aux" 1719245481.84375 2893 ef91495eac1476d9fd0f9bbc2a6e7569 "pdflatex"
-  "SummaryGroupTheory.out" 1719245481.84475 2859 eb79cd1dfafacb0e5763e59d6fdf9afc "pdflatex"
-  "SummaryGroupTheory.tex" 1719245478.6308 44751 6c76dccec3a822d7eb8a6be508356770 ""
-  "SummaryGroupTheory.toc" 1719245481.84575 1269 543a0262c89624e7c5aac5e1937f3867 "pdflatex"
+  "SummaryGroupTheory.aux" 1719797537.53629 2893 63e68fcc8dd42bcc6970c26a33a05449 "pdflatex"
+  "SummaryGroupTheory.out" 1719797537.53729 2859 eb79cd1dfafacb0e5763e59d6fdf9afc "pdflatex"
+  "SummaryGroupTheory.tex" 1719797534.01443 46097 c84c3dbe4c0d35c871dc8677de905e5d ""
+  "SummaryGroupTheory.toc" 1719797537.53729 1269 543a0262c89624e7c5aac5e1937f3867 "pdflatex"
   (generated)
   "SummaryGroupTheory.aux"
   "SummaryGroupTheory.log"

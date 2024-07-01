@@ -718,12 +718,11 @@ The procedure of Euclid's algorithm to find $(m,n)$ for $m,n\in\mathbb{Z}$, wher
 		 & \underbrace{\begin{pmatrix}
 				               0 & 1       \\
 				               1 & k_{i+1}
-			               \end{pmatrix}}
+			               \end{pmatrix}}_{A_i}
 		\begin{pmatrix}
 			r_{i-1} \\
 			r_i
-		\end{pmatrix}                \\
-		 & ~~~~~~A_i
+		\end{pmatrix}
 	\end{align*}
 	Thus
 	\begin{align*}
@@ -834,20 +833,35 @@ The procedure of Euclid's algorithm to find $(m,n)$ for $m,n\in\mathbb{Z}$, wher
 			                                                 & \Rightarrow \varphi(1)\in\mathbb{Z}/n\mathbb{Z}^{\times}
 		      \end{align*}
 		      The first step here relies on the fact that $n=|1| =|\varphi(1)|$ which can be shown from the requirements of a automorphism. It is then easy to show that each automorphism is mapped to an element of $\mathbb{Z}/n\mathbb{Z}^{\times}$.\\
-		\item $\Psi$ is injective:
+		\item $\Psi$ is injective:\\
+			  Assume $\Psi(\varphi_1)=\Psi(\varphi_2)$. Then $\varphi_1(1)=\varphi_2(1)$. Then
 		      \begin{align*}
-			      bzd
+			      \varphi_1(k)=k\varphi_1(1)=k\varphi_2(1)=\varphi_2(k).
 		      \end{align*}
+			  Therefore $\varphi_1\equiv\varphi_2$ and so $\Psi$ is injective.\\
 		\item $\Psi$ is surjective:
+			  Let $l\in\mathbb{Z}/n\mathbb{Z}^{\times}$, then as shown previously, $\langle l\rangle =\langle 1\rangle=\mathbb{Z}/n\mathbb{Z}$, and $|l|=n$. Hence $\varphi_l(k):=\overline{kl}$ defines a group isomorphism from $\mathbb{Z}/n\mathbb{Z}$ to $\langle l\rangle=\mathbb{Z}/n\mathbb{Z}$. Consuquently it is shown that\\
 		      \begin{align*}
-			      bzd
+			      \forall~l\in\mathbb{Z}/n\mathbb{Z}^{\times},~\exists~\varphi_l\in\mathrm{Aut}(\mathbb{Z}/n\mathbb{Z})\text{ s.t. }\Psi(\varphi_l)=l
 		      \end{align*}
+			  and so $\Psi$ is surjective.\\
 		\item $\Psi$ is a group homomorphism:
+			  Since $\varphi\in\mathrm{Aut}(\mathbb{Z}/n\mathbb{Z})$, $\varphi(k)=\underbrace{\varphi(1)+\varphi(1)+...+\varphi(1)}_{k\text{ times}}=k\varphi(1)$.\\
 		      \begin{align*}
-			      \Psi(\varphi_1\circ\varphi_2) & =\varphi_1\circ\varphi_2(1) =\varphi_1(\varphi_2(1))=\
+			      \Psi(\varphi_1\circ\varphi_2) & =\varphi_1\circ\varphi_2(1) =\varphi_1(\varphi_2(1))=\varphi_2(1)\varphi_1(1) \\
+			                                    & =\Psi(\varphi_1)\cdot\Psi(\varphi_2)
+			  \end{align*}
 	\end{itemize}
+	Therefore $\Psi$ is a group isomorphism.\\
 \end{proof}
-
+\begin{remark}
+	We have also shown that if $(k,n)=1$ then $\exists k^{\prime}\in\mathbb{Z}$ s.t. $kk^{\prime}\equiv 1~(\mathrm{mod}~n)$.\\
+	This is resulting from the Euclidean algorithm, in Eq. \ref{EuclidAlg}.\\
+	\begin{align*}
+		\exists a,b\in\mathbb{Z}~\text{ s.t. }~(k,n)=ak+bn=1\\
+		\Rightarrow ak\equiv 1~(\mathrm{mod}~n)
+	\end{align*} 
+\end{remark}
 
 
 

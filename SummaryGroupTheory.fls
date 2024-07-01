@@ -255,8 +255,14 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-OUTPUT SummaryGroupTheory.out
+INPUT ./SummaryGroupTheory.out
+INPUT ./SummaryGroupTheory.out
+INPUT SummaryGroupTheory.out
+INPUT SummaryGroupTheory.out
 OUTPUT SummaryGroupTheory.pdf
+INPUT ./SummaryGroupTheory.out
+INPUT ./SummaryGroupTheory.out
+OUTPUT SummaryGroupTheory.out
 INPUT /usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
@@ -285,8 +291,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-OUTPUT SummaryGroupTheory.toc
-INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT ./SummaryGroupTheory.toc
+INPUT ./SummaryGroupTheory.toc
+INPUT SummaryGroupTheory.toc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
@@ -296,6 +303,8 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+OUTPUT SummaryGroupTheory.toc
+INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
@@ -306,8 +315,6 @@ INPUT /home/dj-lawton/Documents/Tikz/tikzit_image4.png
 INPUT /home/dj-lawton/Documents/Tikz/tikzit_image4.png
 INPUT /home/dj-lawton/Documents/Tikz/tikzit_image4.png
 INPUT /home/dj-lawton/Documents/Tikz/tikzit_image4.png
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm
 INPUT SummaryGroupTheory.aux
 INPUT ./SummaryGroupTheory.out
 INPUT ./SummaryGroupTheory.out
