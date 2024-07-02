@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1719799912.827 "/home/dj-lawton/latex/SummaryGroupTheory.tex" "SummaryGroupTheory.pdf" "SummaryGroupTheory" 1719799914.62282 0
+["pdflatex"] 1719927439.60277 "/home/dj-lawton/latex/SummaryGroupTheory.tex" "SummaryGroupTheory.pdf" "SummaryGroupTheory" 1719927441.10394 0
   "/etc/texmf/web2c/texmf.cnf" 1695845280.71272 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/dj-lawton/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk" 1718979120.70707 11524 a87088f172936cc3f99adb3e83ccff3a ""
   "/home/dj-lawton/Documents/Tikz/tikzit_image4.png" 1717156326.73 11239 943fd337a2617abb52b57bffadf133ac ""
-  "/home/dj-lawton/latex/SummaryGroupTheory.tex" 1719799909.8273 46145 d488c9707d16286b4fe179b34dbbd406 ""
+  "/home/dj-lawton/latex/SummaryGroupTheory.tex" 1719927439.32925 48409 7f806d0b2d40aa5644a2d906bfac6e9b ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -192,10 +192,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1719069489.09729 128028 f533b797fba58d231669ea19e894e23e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1719069542 6851218 4c73941fa8c1fdb11510831324b33f75 ""
-  "SummaryGroupTheory.aux" 1719799914.44496 3021 294d049190d56322869cb4992d60008c "pdflatex"
-  "SummaryGroupTheory.out" 1719799914.44596 3053 538328d85edb8edde1cd01b27362ffa4 "pdflatex"
-  "SummaryGroupTheory.tex" 1719799909.8273 46145 d488c9707d16286b4fe179b34dbbd406 ""
-  "SummaryGroupTheory.toc" 1719799914.44696 1356 351ca4d17f02156d727bcda9bae91348 "pdflatex"
+  "SummaryGroupTheory.aux" 1719927440.92623 3021 a72bb35839ae3a507980ee5ac51d1058 "pdflatex"
+  "SummaryGroupTheory.out" 1719927440.92923 3053 538328d85edb8edde1cd01b27362ffa4 "pdflatex"
+  "SummaryGroupTheory.tex" 1719927439.32925 48409 7f806d0b2d40aa5644a2d906bfac6e9b ""
+  "SummaryGroupTheory.toc" 1719927440.93023 1356 351ca4d17f02156d727bcda9bae91348 "pdflatex"
   (generated)
   "SummaryGroupTheory.aux"
   "SummaryGroupTheory.log"

@@ -864,8 +864,70 @@ The procedure of Euclid's algorithm to find $(m,n)$ for $m,n\in\mathbb{Z}$, wher
 \end{remark}
 \newpage
 \section{Lecture 11: Normal Subgroups}
-
-
-
-
+\begin{example}
+	Define a group homomorphism
+	\begin{align*}
+		f:\mathbb{Z}&\rightarrow\mathbb{Z}/5\mathbb{Z}\\
+		k&\mapsto\overline{k}
+	\end{align*}
+	For this homomorphism, the kernel and preimage can be written as
+	\begin{align*}
+		\mathrm{ker}~f&=5\mathbb{Z}\leq\mathbb{Z},\\
+		f^{-1}(\lbrace \overline{k}\rbrace)=\lbrace l+5k|k\in\mathbb{Z}\leq\mathbb{Z}
+	\end{align*}
+\end{example}
+\begin{definition}
+	Let $H\leq G$. Given $g\in G$ we define the \textbf{left coset} of $H$ in $G$ to be
+	\begin{equation}
+		gH:=\lbrace gh|h\in H \rbrace
+	\end{equation}
+	and the \textbf{right coset} of $H$ in $G$ to be
+	\begin{equation}
+		Hg:=\lbrace hg|h\in H \rbrace
+	\end{equation}
+\end{definition}
+\begin{definition}
+	We can from the previous definition now define the \textbf{quotient groups} of $G$ by $H$ to be
+	\begin{align}
+		G/H&:=\lbrace gH|g\in G\rbrace\\
+		H\backslash G&:=\lbrace Hg|g\in G\rbrace
+	\end{align}
+\end{definition}
+\begin{notation}
+	For $g\in G$ we write $[g]:=gH\in G/H$
+\end{notation}
+\begin{lemma}
+	For $x,y\in G$, $H\leq G$,
+	\begin{align*}
+		&xH=yH\\
+		\Leftrightarrow~&x^{-1}y\in H\\
+		\Leftrightarrow~&y^{-1}x\in H
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	\begin{align*}
+		"\Rightarrow"~&xH=yH\\
+		&\Rightarrow~y\cdot e\in yH=xH,~\Rightarrow~y\in xH\\
+		&\exists h\in H \text{ s.t. } y=xh\\
+		&\Rightarrow x^{-1}y=h\in H, \text{ consequently, }(x^{-1}y)^{-1}=y^{-1}x\in H\\
+		"\Leftarrow"~&x^{-1}y\in H\\
+		&\Rightarrow x^{-1}y\in H\\
+		&\Rightarrow h\in H, yh=x\underbrace{x^{-1}yh}_{\in H}\in xH\\ 
+		&\text{Similarly, }y^{-1}x\in H\Rightarrow x\in yH
+	\end{align*}
+\end{proof}
+Next, we ask when is $G/H$ a group?\\
+The answer is that it is a group when the map defined by
+\begin{align*}
+	\phi:~ & G\rightarrow G/H \\
+	       & g\mapsto [g]
+\end{align*}
+is a group homorphism. 
+We then require the multiplication of cosets defined by
+\begin{align*}
+	[x]\cdot[y]:=[xy]
+\end{align*}
+to be well defined.\\
+\indent For $x\in G$, [x]=[xh] for any $h\in H$. We then let $[x]=[xh_1]$ and $[y]=[yh_2]$, $h_1,h_2\in H$. We then require $[xy]=[xh_1yh_2]$.\\
+\indent Then, from the previous lemma, $(xy)^{-1}xh_1yh_2\in H$, and $(xy)^{-1}xh_1yh_2=y^{-1}x^{-1}xh_1yh_2=y^{-1}h_1yh_2$. Then since $y^{-1}h_1yh_2\in H$, $y^{-1}h_1y\in H~\forall ~h_1\in H$.\\
 \end{document}
